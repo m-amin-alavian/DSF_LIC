@@ -1,0 +1,10 @@
+"First Year": 2006
+"Current Year": 2018
+"First Year of Projections": 2018
+"Last Year": 2070
+
+# Values: "Residency-Based" / "Currency-Based"
+"Definition of External/Domestic Debt": "Residency-Based"
+
+# Values: true, false
+"Is there a material difference between the two criteria?": true

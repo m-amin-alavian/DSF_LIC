@@ -1,0 +1,52 @@
+imf:
+  disbursement: NEW_IMF
+  interest_rate: 0.25
+  grace_period: 5
+  loan_maturity: 10
+
+ida1:
+  disbursement: NEW_IDA1
+  interest_rate: 2
+  grace_period: 5
+  loan_maturity: 30
+  repayment_schedule: blend
+
+multi2:
+  disbursement: NEW_MULTI2
+  interest_rate: 0.75
+  grace_period: 5
+  loan_maturity: 30
+
+pc1:
+  description: Official Bilaterals, Paris Club, Export Credit Agencies
+  disbursement: NEW_PC1
+  interest_rate: 1.77
+  grace_period: 7
+  loan_maturity: 20
+
+npc1:
+  description: Official Bilaterals, Non-Paris Club, Export Import Bank of NPC
+  disbursement: NEW_PC1
+  interest_rate: 3.18
+  grace_period: 5
+  loan_maturity: 15
+
+com1:
+  description: Eurobond
+  disbursement: NEW_COM1
+  interest_rate: 9
+  grace_period: 9
+  loan_maturity: 12
+
+com2:
+  description: Commecial Bank
+  disbursement: NEW_COM2
+  interest_rate: 5
+  grace_period: 3
+  loan_maturity: 12
+
+com3:
+  disbursement: NEW_COM3
+  interest_rate: 5
+  grace_period: 1
+  loan_maturity: 5

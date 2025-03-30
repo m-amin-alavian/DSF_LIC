@@ -1,0 +1,919 @@
+NGDPD:
+  Descriptor: "Gross Domestic Product (US Dollars)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NGDP_R:
+  Descriptor: "Real gross Domestic Product"
+  Units: "Index, National Currency"
+  Scale: "Million"
+  Source: Input
+
+DSA_NFIG_R:
+  Descriptor: "Public Investment, constant prices"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+DSA_NFIP_R:
+  Descriptor: "Private Investment, constant price"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+DSA_NFIG_R_GDP_T_1:
+  Descriptor: "Public Investment in percent of GDP (real), previous DSA vintage"
+  Units: "Percent of GDP"
+  Scale: "Unit"
+  Source: Input
+
+DSA_NFIP_R_GDP_T_1:
+  Descriptor: "Private Investment in percent of GDP (real), previous DSA vintage"
+  Units: "Percent of GDP"
+  Scale: "Unit"
+  Source: Input
+
+W111NGDP_D:
+  Descriptor: "U.S. Deflator"
+  Units: "Index Number"
+  Scale: "Unit"
+  Source: Input
+
+ENDE:
+  Descriptor: "National Currency per U.S. Dollar (e.o.p.)"
+  Units: "National Currency per US Dollar"
+  Scale: "Unit"
+  Source: Input
+  Extrapolate: true
+
+ENDA:
+  Descriptor: "National Currency per U.S. Dollar (p.a.)"
+  Units: "National Currency per US Dollar"
+  Scale: "Unit"
+  Source: Input
+  Extrapolate: true
+
+GRG:
+  Descriptor: "Government revenue and grants"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+GRGG:
+  Descriptor: "Government grants"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+GE:
+  Descriptor: "Government PRIMARY expenditures (this used to be total expenditure)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+PBA:
+  Descriptor: "Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+PBAF:
+  Descriptor: "Liquid financial assets used to meet GFNs, flow (e.g. -ve: drawdown; +ve: accumulation)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+GCFP:
+  Descriptor: "Privatization Proceeds"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+G_CL:
+  Descriptor: "Recognition of contingent liabilities (e.g., bank recapitalization)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+GCDRNM:
+  Descriptor: "Debt relief (non-multilateral HIPC)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+G_DCF:
+  Descriptor: "Other debt creating or reducing flow (please specify)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+PV_CL:
+  Descriptor: "PV of contingent liabilities (e.g., pension liabilities)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+G_DCL:
+  Descriptor: "Concessional loans"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BCA:
+  Descriptor: "Current Account"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BX:
+  Descriptor: "Exports of goods and services"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_fuel_ex:
+  Descriptor: "Exports - commodity (fuel)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_nfuel_ex:
+  Descriptor: "Exports - commodity (non_fuel)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BM:
+  Descriptor: "Imports of goods and services (enter as a positive number)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_fuel_im:
+  Descriptor: "Imports - commodity (fuel; enter as a positive number)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_nfuel_im:
+  Descriptor: "Imports - commodity (non_fuel; enter as a positive number)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BIT:
+  Descriptor: "Current transfers (net)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BITG:
+  Descriptor: "Official grants (net)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BFD:
+  Descriptor: "Foreign direct investment"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BE:
+  Descriptor: "Exceptional Financing"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BITOW:
+  Descriptor: "Workers' remittances (gross) - informing the next roud CI / probability approach (optional)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BFRA_CD:
+  Descriptor: "Change in Reserves, Gross (-: increase)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+PPG_X_MLT:
+  Descriptor: "PPG MLT external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+PPG_X_ST:
+  Descriptor: "PPG ST external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_PPG_INT:
+  Descriptor: "PPG external debt interest due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_PPG_AMT:
+  Descriptor: "PPG TOTAL external debt amortization due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+EXT_ARREARS:
+  Descriptor: "PPG External arrears"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+P_X_MLT:
+  Descriptor: "Private sector MLT external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+P_X_ST:
+  Descriptor: "Private sector ST external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_P_INT:
+  Descriptor: "Private external debt interest due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_P_AMT:
+  Descriptor: "Private MLT external debt amortization due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_IMF:
+  Descriptor: "IMF"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_IDA1:
+  Descriptor: "IDA"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_IDA2:
+  Descriptor: "IDA"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_MULTI1:
+  Descriptor: "Multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_MULTI2:
+  Descriptor: "Multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_MULTI3:
+  Descriptor: "Multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_OTH_MULTI1:
+  Descriptor: "Other Multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_OTH_MULTI2:
+  Descriptor: "Other Multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_OTH_MULTI3:
+  Descriptor: "Other Multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC1:
+  Descriptor: "Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC2:
+  Descriptor: "Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC3:
+  Descriptor: "Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC4:
+  Descriptor: "Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC5:
+  Descriptor: "Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC1:
+  Descriptor: "Non-Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC2:
+  Descriptor: "Non-Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC3:
+  Descriptor: "Non-Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC4:
+  Descriptor: "Non-Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC5:
+  Descriptor: "Non-Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM1:
+  Descriptor: "Commercial1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM2:
+  Descriptor: "Commercial2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM3:
+  Descriptor: "Commercial3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM4:
+  Descriptor: "Commercial4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM5:
+  Descriptor: "Commercial5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_TOTAL_P:
+  Descriptor: "Total principal payment"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_IMF:
+  Descriptor: "IMF"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_IDA1:
+  Descriptor: "IDA - blend"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_IDA2:
+  Descriptor: "IDA - blend"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_MULTI1:
+  Descriptor: "Multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_MULTI2:
+  Descriptor: "Multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_MULTI3:
+  Descriptor: "Multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_OTH_MULTI1:
+  Descriptor: "Other multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_OTH_MULTI2:
+  Descriptor: "Other multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_OTH_MULTI3:
+  Descriptor: "Other multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC1:
+  Descriptor: "Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC2:
+  Descriptor: "Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC3:
+  Descriptor: "Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC4:
+  Descriptor: "Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC5:
+  Descriptor: "Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC1:
+  Descriptor: "Non-Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC2:
+  Descriptor: "Non-Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC3:
+  Descriptor: "Non-Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC4:
+  Descriptor: "Non-Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC5:
+  Descriptor: "Non-Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM1:
+  Descriptor: "Commercial1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM2:
+  Descriptor: "Commercial2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM3:
+  Descriptor: "Commercial3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM4:
+  Descriptor: "Commercial4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM5:
+  Descriptor: "Commercial5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+D_dom_lc:
+  Descriptor: "Outstanding of existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+D_dom_lc_st:
+  Descriptor: "o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+D_dom_fc:
+  Descriptor: "Outstanding of existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+D_dom_fc_st:
+  Descriptor: "o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+DS_dom_lc:
+  Descriptor: "Interest payment from existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+DS_dom_fc:
+  Descriptor: "Interest payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+DS_p_dom_lc:
+  Descriptor: "Principal payment from existing debt in local currency"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+DS_p_dom_fc:
+  Descriptor: "Principal payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+New_dom_cb:
+  Descriptor: "New gross disbursement_Central bank"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_tbill_lc:
+  Descriptor: "New gross disbursement_T-bills_in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_tbill_fc:
+  Descriptor: "New gross disbursement_T-bills_in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_1_3_lc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_4_7_lc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_7_lc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_1_3_fc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_4_7_fc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_7_fc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+D_dom_nr_lc:
+  Descriptor: "Outstanding of existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+D_dom_nr_lc_st:
+  Descriptor: "o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+D_dom_nr_fc:
+  Descriptor: "Outstanding of existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+D_dom_nr_fc_st:
+  Descriptor: "o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+DS_dom_nr_lc:
+  Descriptor: "Interest payment from existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+DS_dom_nr_fc:
+  Descriptor: "Interest payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+DS_p_dom_nr_lc:
+  Descriptor: "Principal payment from existing debt in local currency"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+
+DS_p_dom_nr_fc:
+  Descriptor: "Principal payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_tbill_lc:
+  Descriptor: "New gross disbursement_T-bills_in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_tbill_fc:
+  Descriptor: "New gross disbursement_T-bills_in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_1_3_lc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_4_7_lc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_7_lc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_1_3_fc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_4_7_fc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_7_fc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+NGDP_RPCH:
+  Descriptor: "World Economic Growth (real)"
+  Units: ""
+  Scale: "Units"
+  Source: Input
+
+RES:
+  Descriptor: "Stock of Reserves"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+# Locally-issued debt (domestic debt) - LCU
+DOM_LCU_OUTSTANDING:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Outstanding"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_lc.fillna(0)"
+    Currency_Based: "D_dom_lc.fillna(0) + D_dom_fc.fillna(0) * ENDE"
+
+DOM_LCU_ST:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_lc_st.fillna(0)"
+    Currency_Based: "D_dom_lc_st.fillna(0) + D_dom_fc_st.fillna(0) * ENDE"
+
+DOM_LCU_MLT:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - o/w: medium- and long-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_OUTSTANDING - DOM_LCU_ST"
+
+DOM_LCU_INT:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Interest"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_lc.fillna(0)"
+    Currency_Based: "Ds_dom_lc.fillna(0) + DS_dom_fc.fillna(0) * ENDE"
+
+DOM_LCU_PRIN:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Principal"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_p_dom_lc.fillna(0)"
+    Currency_Based: "Ds_p_dom_lc.fillna(0) + DS_p_dom_fc.fillna(0) * ENDE"
+
+DOM_LCU_PRIN_ST:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Principal - o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_lc_st.fillna(0).shift()"
+    Currency_Based: "D_dom_lc_st.fillna(0).shift() + D_dom_fc_st.fillna(0).shift() * ENDA"
+
+DOM_LCU_PRIN_MLT:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Principal - o/w: medium- and long-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_PRIN - DOM_LCU_PRIN_ST"
+
+# Locally-issued debt (domestic debt) - USD
+DOM_USD_OUTSTANDING:
+  Descriptor: "Locally-issued debt (domestic debt) - USD - Outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_OUTSTANDING / ENDE"
+
+DOM_USD_ST:
+  Descriptor: "Locally-issued debt (domestic debt) - USD - o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_ST / ENDE"
+
+DOM_USD_MLT:
+  Descriptor: "Locally-issued debt (domestic debt) - USD - o/w: medium- and long-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_MLT / ENDE"
+
+DOM_USD_INT:
+  Descriptor: "Locally-issued debt (domestic debt) - USD - Interest"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_INT / ENDA"
+
+DOM_USD_PRIN:
+  Descriptor: "Locally-issued debt (domestic debt) - USD - Principal"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_PRIN / ENDA"
+
+DOM_USD_PRIN_ST:
+  Descriptor: "Locally-issued debt (domestic debt) - USD - Principal - o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_PRIN_ST / ENDA"
+
+DOM_USD_PRIN_MLT:
+  Descriptor: "Locally-issued debt (domestic debt) - USD - Principal - o/w: medium- and long-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "DOM_LCU_PRIN_MLT / ENDA"
+
+# Locally-issued debt (external debt) - USD
+EXT_USD_OUTSTANDING:
+  Descriptor: "Locally-issued debt (external debt) - USD - Outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_nr_lc.fillna(0) / ENDE + D_dom_nr_fc.fillna(0)"
+    Currency_Based: "D_dom_fc.fillna(0)"
+
+EXT_USD_ST:
+  Descriptor: "Locally-issued debt (external debt) - USD - o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_nr_lc_st.fillna(0) / ENDE + D_dom_nr_fc_st.fillna(0)"
+    Currency_Based: "D_dom_fc_st.fillna(0)"
+
+EXT_USD_MLT:
+  Descriptor: "Locally-issued debt (external debt) - USD - o/w: medium- and long-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "EXT_USD_OUTSTANDING - EXT_USD_ST"
+
+EXT_USD_INT:
+  Descriptor: "Locally-issued debt (external debt) - USD - Interest"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_nr_lc.fillna(0) / ENDA + DS_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_dom_fc.fillna(0)"
+
+EXT_USD_PRIN:
+  Descriptor: "Locally-issued debt (external debt) - USD - Principal"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_p_dom_nr_lc.fillna(0) / ENDA + DS_p_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_p_dom_fc.fillna(0)"
+
+# Foreign currency-denominated debt (including locally-issued debt)
+FC_DEBT_TOTAL:
+  Descriptor: "Foreign currency-denominated debt (including locally-issued debt)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PPG_X_MLT + PPG_X_ST + D_dom_fc + D_dom_nr_fc"

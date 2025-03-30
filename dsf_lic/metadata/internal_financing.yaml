@@ -1,0 +1,52 @@
+centeral_bank:
+  held_by_residents: New_dom_cb
+  grace_period: 0
+  loan_maturity: 1
+
+tbills_lc:
+  held_by_residents: New_dom_tbill_lc
+  held_by_non_residents: New_dom_nr_tbill_lc
+  grace_period: 0
+  loan_maturity: 1
+
+tbills_fc:
+  held_by_residents: New_dom_tbill_fc
+  held_by_non_residents: New_dom_nr_tbill_fc
+  grace_period: 0
+  loan_maturity: 1
+
+bound_1_3_lc:
+  held_by_residents: New_dom_1_3_lc
+  held_by_non_residents: New_dom_nr_1_3_lc
+  grace_period: 1
+  loan_maturity: 2
+
+bound_4_7_lc:
+  held_by_residents: New_dom_4_7_lc
+  held_by_non_residents: New_dom_nr_4_7_lc
+  grace_period: 3
+  loan_maturity: 5
+
+bound_b_7_lc:
+  held_by_residents: New_dom_7_lc
+  held_by_non_residents: New_dom_nr_7_lc
+  grace_period: 6
+  loan_maturity: 7
+
+bound_1_3_fc:
+  held_by_residents: New_dom_1_3_fc
+  held_by_non_residents: New_dom_nr_1_3_fc
+  grace_period: 1
+  loan_maturity: 2
+
+bound_4_7_fc:
+  held_by_residents: New_dom_4_7_fc
+  held_by_non_residents: New_dom_nr_4_7_fc
+  grace_period: 3
+  loan_maturity: 5
+
+bound_b_7_fc:
+  held_by_residents: New_dom_7_fc
+  held_by_non_residents: New_dom_nr_7_fc
+  grace_period: 6
+  loan_maturity: 7
