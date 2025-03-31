@@ -11,9 +11,46 @@ ida1:
   loan_maturity: 30
   repayment_schedule: blend
 
+ida2:
+  disbursement: NEW_IDA2
+  interest_rate: 2
+  grace_period: 5
+  loan_maturity: 30
+  repayment_schedule: blend
+
+multi1:
+  disbursement: NEW_MULTI1
+  interest_rate: 0.75
+  grace_period: 6
+  loan_maturity: 38
+
 multi2:
   disbursement: NEW_MULTI2
   interest_rate: 0.75
+  grace_period: 5
+  loan_maturity: 30
+
+multi3:
+  disbursement: NEW_MULTI3
+  interest_rate: 0
+  grace_period: 5
+  loan_maturity: 30
+
+other_multi1:
+  disbursement: NEW_OTH_MULTI1
+  interest_rate: 2.5
+  grace_period: 5
+  loan_maturity: 20
+
+other_multi2:
+  disbursement: NEW_OTH_MULTI2
+  interest_rate: 2
+  grace_period: 5
+  loan_maturity: 25
+
+other_multi3:
+  disbursement: NEW_OTH_MULTI3
+  interest_rate: 2
   grace_period: 5
   loan_maturity: 30
 
@@ -24,12 +61,60 @@ pc1:
   grace_period: 7
   loan_maturity: 20
 
+pc2:
+  disbursement: NEW_PC2
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
+
+pc3:
+  disbursement: NEW_PC3
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
+
+pc4:
+  disbursement: NEW_PC4
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
+
+pc5:
+  disbursement: NEW_PC5
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
+
 npc1:
   description: Official Bilaterals, Non-Paris Club, Export Import Bank of NPC
-  disbursement: NEW_PC1
+  disbursement: NEW_NPC1
   interest_rate: 3.18
   grace_period: 5
   loan_maturity: 15
+
+npc2:
+  disbursement: NEW_NPC2
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
+
+npc3:
+  disbursement: NEW_NPC3
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
+
+npc4:
+  disbursement: NEW_NPC4
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
+
+npc5:
+  disbursement: NEW_NPC5
+  interest_rate: 2
+  grace_period: 1
+  loan_maturity: 2
 
 com1:
   description: Eurobond
@@ -47,6 +132,18 @@ com2:
 
 com3:
   disbursement: NEW_COM3
+  interest_rate: 5
+  grace_period: 1
+  loan_maturity: 5
+
+com4:
+  disbursement: NEW_COM4
+  interest_rate: 5
+  grace_period: 1
+  loan_maturity: 5
+
+com5:
+  disbursement: NEW_COM5
   interest_rate: 5
   grace_period: 1
   loan_maturity: 5

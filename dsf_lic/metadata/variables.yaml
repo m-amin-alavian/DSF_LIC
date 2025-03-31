@@ -917,3 +917,156 @@ FC_DEBT_TOTAL:
   Scale: "Million"
   Source: Calculation
   Formula: "PPG_X_MLT + PPG_X_ST + D_dom_fc + D_dom_nr_fc"
+
+
+# Input 5 - Local-debt Financing
+
+# Residents
+OLD_DEBT_LC_RES:
+  Descriptor: "Outstanding from OLD debt in local currency (residents)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_lc
+      payment: DS_p_dom_lc
+
+OLD_DEBT_FC_RES_USD:
+  Descriptor: "Outstanding from OLD debt in foreign currency (residents)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_fc
+      payment: DS_p_dom_fc
+
+OLD_DEBT_FC_RES:
+  Source: Calculation
+  Formula: "OLD_DEBT_FC_RES_USD / ENDE"
+
+# Non-residents
+OLD_DEBT_LC_NONRES:
+  Descriptor: "Outstanding from OLD debt in local currency (non-residents)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_nr_lc
+      payment: DS_p_dom_nr_lc
+
+OLD_DEBT_FC_NONRES_USD:
+  Descriptor: "Outstanding from OLD debt in foreign currency (non-residents)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_nr_fc
+      payment: DS_p_dom_nr_fc
+
+OLD_DEBT_FC_NONRES:
+  Source: Calculation
+  Formula: "OLD_DEBT_FC_NONRES_USD / ENDE"
+
+OLD_DEBT_RESIDENCY_TOTAL:
+  Descriptor: "Outstanding of OLD debt (Residency-based) - Total"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_DEBT_LC_RES + OLD_DEBT_FC_RES + OLD_DEBT_LC_NONRES + OLD_DEBT_FC_NONRES"
+
+
+# External Debt Data Sheet
+
+OLD_MULT_TOTAL:
+  Descriptor: "Total old multilateral debt (IMF, IDA, and core multilateral institutions)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_IMF.fillna(0) + OLD_IDA1.fillna(0) + OLD_IDA2.fillna(0)
+    + OLD_MULTI1.fillna(0) + OLD_MULTI2.fillna(0) + OLD_MULTI3.fillna(0)"
+
+OLD_OTHER_MULT_TOTAL:
+  Descriptor: "Total old other multilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_OTH_MULTI1.fillna(0) + OLD_OTH_MULTI2.fillna(0) +
+    OLD_OTH_MULTI3.fillna(0)"
+
+OLD_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_PC1.fillna(0) + OLD_PC2.fillna(0) + OLD_PC3.fillna(0) +
+    OLD_PC4.fillna(0) + OLD_PC5.fillna(0)"
+
+OLD_NON_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Non-Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_NPC1.fillna(0) + OLD_NPC2.fillna(0) + OLD_NPC3.fillna(0) +
+    OLD_NPC4.fillna(0) + OLD_NPC5.fillna(0)"
+
+OLD_BILATERAL_TOTAL:
+  Descriptor: "Total old bilateral debt (Paris Club + Non-Paris Club)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_PARIS_CLUB_TOTAL + OLD_NON_PARIS_CLUB_TOTAL"
+
+OLD_COMMERCIAL_TOTAL:
+  Descriptor: "Total old commercial debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_COM1.fillna(0) + OLD_COM2.fillna(0) + OLD_COM3.fillna(0) +
+    OLD_COM4.fillna(0) + OLD_COM5.fillna(0)"
+
+OLD_TOTAL_DEBT:
+  Descriptor: "Total old debt (multilateral + other multilateral + bilateral + commercial)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_MULT_TOTAL + OLD_OTHER_MULT_TOTAL + OLD_BILATERAL_TOTAL + OLD_COMMERCIAL_TOTAL"
+
+OLD_TOTAL_DEBT_INT:
+  Descriptor: "Total old debt interest"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_TOTAL_DEBT - OLD_TOTAL_P.fillna(0)"
+
+EVOLUTION_DEBT_EXCL_LOCAL:
+  Descriptor: "Evolution of external debt (excluding locally-issued debt) - Previous period value minus current principal payments"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: PPG_X_MLT
+      payment: OLD_TOTAL_P
+
+EVOLUTION_DEBT_LOCAL:
+  Source: Calculation
+  Formula:
+    Residency_Based: "(OLD_DEBT_LC_NONRES + OLD_DEBT_FC_NONRES) / ENDE"
+    Currency_Based: "OLD_DEBT_FC_RES / ENDE"
+
+EVOL_OLD_MLT_DEBT_EXCL_ARREARS:
+  Descriptor: "Evolution of old medium- and long-term (MLT) debt, excluding arrears (nominal)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: "PPG_X_MLT + EXT_USD_MLT - EXT_ARREARS.fillna(0)"
+      payment: "OLD_TOTAL_P - (EVOLUTION_DEBT_LOCAL - EVOLUTION_DEBT_LOCAL.shift())"
+
+
+

@@ -1,3 +1,4 @@
+from typing import NamedTuple
 from pathlib import Path
 
 import pandas as pd
@@ -8,6 +9,13 @@ import yaml
 def read_yaml_file(path: Path) -> dict:
     with path.open(encoding="utf-8") as file:
         return yaml.safe_load(file)
+
+
+class Settings(NamedTuple):
+    first_year: int
+    projection_year: int
+    last_year: int
+    residency_based: bool
 
 
 class Metadata:
@@ -23,16 +31,15 @@ class Metadata:
     def reload_metadata(self) -> None:
         self._load_metadata()
 
-    def _read_settings(self) -> dict:
+    def _read_settings(self) -> Settings:
         settings = read_yaml_file(self.package_path.joinpath("settings.yaml"))
-        return {
-            "first_year": settings["First Year"],
-            "projection_year": settings["First Year of Projections"],
-            "last_year": settings["Last Year"],
-
-            "residency_based":
+        return Settings(
+            first_year = settings["First Year"],
+            projection_year = settings["First Year of Projections"],
+            last_year = settings["Last Year"],
+            residency_based =
             settings["Definition of External/Domestic Debt"] == "Residency-Based",
-        }
+        )
 
     def _load_metadata(self) -> None:
         for metadata in ["external_loans", "internal_financing", "variables"]:
@@ -46,15 +53,15 @@ class Metadata:
     @property
     def year_index(self) -> pd.Index:
         return pd.RangeIndex(
-            self.setting["first_year"],
-            self.setting["last_year"] + 1,
+            self.setting.first_year,
+            self.setting.last_year + 1,
         )
 
     @property
     def projection_year_index(self) -> pd.Index:
         return pd.RangeIndex(
-            self.setting["projection_year"],
-            self.setting["last_year"] + 1,
+            self.setting.projection_year,
+            self.setting.last_year + 1,
         )
 
     @property

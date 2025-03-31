@@ -1,4 +1,5 @@
 from pathlib import Path
+import importlib
 
 import pandas as pd
 
@@ -10,6 +11,7 @@ def open_data() -> pd.DataFrame:
     metadata.reload_metadata()
     data = load_input()
     data = apply_metadata(data)
+    data = data.round(6)
     return data
 
 
@@ -37,17 +39,34 @@ def apply_metadata_for_column(
 
     if column_metadata["Source"] == "Input":
         assert column_name in data.columns
-    elif column_metadata["Source"] == "Calculation":
+    elif column_metadata["Source"] == "Calculation" and "Formula" in column_metadata:
         formula = column_metadata["Formula"]
         if isinstance(formula, dict) and "Residency_Based" in formula:
-            if metadata.setting["residency_based"]:
+            if metadata.setting.residency_based:
                 formula = formula["Residency_Based"]
             else:
                 formula = formula["Currency_Based"]
         if isinstance(formula, str):
-            data[column_name] = data.eval(formula)
+            local_dict = {
+                "projection_year": metadata.setting.projection_year
+            }
+            data[column_name] = data.eval(formula, local_dict=local_dict)
         else:
             raise NotImplementedError
+    elif column_metadata["Source"] == "Calculation" and "Function" in column_metadata:
+        variable_functions = importlib.import_module("dsf_lic.metadata.variable_functions")
+        function_info = column_metadata["Function"]
+        if isinstance(function_info, str):
+            function_name = function_info
+            parameters = {}
+        elif isinstance(function_info, dict):
+            function_name, parameters = list(function_info.items())[0]
+        parameters["data"] = data
+        func = getattr(variable_functions, function_name)
+        data[column_name] = func(**parameters)
+    else:
+        raise KeyError
+        
 
     if "Extrapolate" in column_metadata:
         data[column_name] = extrapolate(
