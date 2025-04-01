@@ -46,13 +46,20 @@ def apply_metadata_for_column(
                 formula = formula["Residency_Based"]
             else:
                 formula = formula["Currency_Based"]
+
+        projection_year = metadata.setting.projection_year
+        local_dict = {
+            "projection_year": projection_year
+        }
         if isinstance(formula, str):
-            local_dict = {
-                "projection_year": metadata.setting.projection_year
-            }
             data[column_name] = data.eval(formula, local_dict=local_dict)
+        elif isinstance(formula, dict) and "Pre_Projection" in formula:
+            data[column_name] = pd.concat([
+                data.loc[:projection_year-1].eval(formula["Pre_Projection"], local_dict=local_dict), # type: ignore
+                data.loc[projection_year:].eval(formula["Post_Projection"], local_dict=local_dict), # type: ignore
+            ])
         else:
-            raise NotImplementedError
+            raise ValueError
     elif column_metadata["Source"] == "Calculation" and "Function" in column_metadata:
         variable_functions = importlib.import_module("dsf_lic.metadata.variable_functions")
         function_info = column_metadata["Function"]

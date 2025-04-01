@@ -1,6 +1,7 @@
 import pandas as pd
 
 from ..utils.metadata import metadata
+from ..financing import foreign_currency, local_currency
 
 
 def outstanding_from_old_debt(
@@ -22,3 +23,18 @@ def outstanding_from_old_debt(
     )
     outstanding = last_year_value - cumulative_payment
     return outstanding
+
+
+def foreign_currency_debt(
+        name: str,
+        column: str,
+        data: pd.DataFrame,
+        external: bool = True
+    ) -> pd.Series:
+    table = foreign_currency.create_debt_table(name, data, external=external)
+    result = table[column]
+    return result
+
+
+def local_currency_debt(name: str, column: str, data: pd.DataFrame) -> pd.Series:
+    return local_currency.create_debt_table(name, data)[column]

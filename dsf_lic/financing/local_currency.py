@@ -3,17 +3,11 @@ from typing import NamedTuple, Optional
 
 import pandas as pd
 
-import yaml
+from ..utils.metadata import metadata
 
 
-first_year = 2018
-last_year = 2070
-
-discount = 5
-
-class InternalFinancingInfo(NamedTuple):
-    held_by_residents: str
-    held_by_non_residents: str
+class DebtInfo(NamedTuple):
+    disbursement: str
     interest_rate_series: pd.Series
     grace_period: int
     loan_maturity: int
@@ -21,7 +15,7 @@ class InternalFinancingInfo(NamedTuple):
     description: Optional[str] = None
 
 
-class InternalDebtInfo(NamedTuple):
+class DisbursementInfo(NamedTuple):
     value: float
     year: int
     interest_rate: float
@@ -30,38 +24,17 @@ class InternalDebtInfo(NamedTuple):
 
 
 
-def get_internal_financing_metadata() -> dict:
-    with Path("dsf", "metadata", "internal_financing.yaml").open() as file:
-        internal_financing = yaml.safe_load(file)
-    return internal_financing
-
-
-def get_financing_info(name: str) -> InternalFinancingInfo:
-    financing_metadata = get_internal_financing_metadata()
-    interest_rate_series = (
-        pd.read_csv(Path("dsf", "metadata", "internal_interest_rates.csv"), index_col=0)
-        .transpose()
-        .loc[:, name]
-    )
-    interest_rate_series.index = interest_rate_series.index.astype("Int64")
-    interest_rate_series = (
-        pd.Series(
-            interest_rate_series,
-            index=pd.RangeIndex(first_year, last_year + 1),
-        )
-        .ffill()
-    )
-
-    financing_info = InternalFinancingInfo(
-        interest_rate_series=interest_rate_series,
-        **financing_metadata[name]
+def get_debt_info(name: str) -> DebtInfo:
+    financing_info = DebtInfo(
+        interest_rate_series=metadata.internal_interest_rates[name],
+        **metadata.internal_financing[name]
     )
     return financing_info
 
 
-def create_debt_pv_table_for_year(debt_info: InternalDebtInfo, data: pd.DataFrame) -> pd.DataFrame:
-    pv_table = (
-        pd.DataFrame(index=pd.RangeIndex(first_year, last_year + 1))
+def create_year_debt_table(debt_info: DisbursementInfo, data: pd.DataFrame) -> pd.DataFrame:
+    debt_table = (
+        pd.DataFrame(index=metadata.projection_year_index)
         .assign(
             cumulative = lambda df: df.index.to_series().ge(debt_info.year).mul(debt_info.value),
 
@@ -80,7 +53,9 @@ def create_debt_pv_table_for_year(debt_info: InternalDebtInfo, data: pd.DataFram
 
             total_debt_service_usd = lambda df: df["amortization_usd"] + df["interest_usd"],
 
-            pv_multiplier = lambda df: pd.Series(discount, index=df.index).div(100).add(1).cumprod(),
+            pv_multiplier = lambda df:
+            pd.Series(metadata.setting.discount_rate, index=df.index)
+            .div(100).add(1).cumprod(),
 
             tds_usd_npv = lambda df: 
             df["total_debt_service_usd"].shift(-1 , fill_value=0)
@@ -90,29 +65,20 @@ def create_debt_pv_table_for_year(debt_info: InternalDebtInfo, data: pd.DataFram
             pv_usd = lambda df: df[["stock_of_debt_usd", "tds_usd_npv"]].min(axis="columns"),
         )
     )
-    return pv_table
+    return debt_table
 
 
-def create_aggregate_financing_table(
+def create_debt_table(
     name: str,
     data: pd.DataFrame,
-    for_residents: Optional[bool] = True
 ) -> pd.DataFrame:
-    financing_info = get_financing_info(name)
-    if for_residents == True:
-        values = data[financing_info.held_by_residents]
-    elif for_residents == False:
-        values = data[financing_info.held_by_non_residents]
-    elif for_residents is None:
-        raise NotImplementedError
-    else:
-        raise ValueError
+    financing_info = get_debt_info(name)
     
     debt_list: list[dict] = (
         pd.concat(
             [
-                values.rename("value"),
-                financing_info.interest_rate_series.rename("interest_rate")
+                data[financing_info.disbursement].rename("value"),
+                financing_info.interest_rate_series.rename("interest_rate"),
             ],
             axis="columns",
             join="inner",
@@ -126,17 +92,17 @@ def create_aggregate_financing_table(
         .to_dict("records")
     )
 
-    debt_info_list = [InternalDebtInfo(**debt) for debt in debt_list]
+    debt_info_list = [DisbursementInfo(**debt) for debt in debt_list]
 
     debt_tables = {
-        debt.year: create_debt_pv_table_for_year(debt, data)
+        debt.year: create_year_debt_table(debt, data)
         for debt in debt_info_list
     }
-    aggregate_table = (
+    aggregate_debt_table = (
         pd.concat(
             debt_tables,
             names=["bond_year", "repayment_year"],
         )
         .groupby("repayment_year").sum()
     )
-    return aggregate_table
+    return aggregate_debt_table

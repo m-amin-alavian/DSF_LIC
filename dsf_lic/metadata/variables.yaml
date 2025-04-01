@@ -3,6 +3,8 @@ NGDPD:
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 12}
 
 NGDP_R:
   Descriptor: "Real gross Domestic Product"
@@ -203,6 +205,8 @@ PPG_X_MLT:
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 51}
 
 PPG_X_ST:
   Descriptor: "PPG ST external debt outstanding"
@@ -875,6 +879,8 @@ EXT_USD_OUTSTANDING:
   Formula:
     Residency_Based: "D_dom_nr_lc.fillna(0) / ENDE + D_dom_nr_fc.fillna(0)"
     Currency_Based: "D_dom_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 204}
 
 EXT_USD_ST:
   Descriptor: "Locally-issued debt (external debt) - USD - o/w: short-term"
@@ -884,6 +890,8 @@ EXT_USD_ST:
   Formula:
     Residency_Based: "D_dom_nr_lc_st.fillna(0) / ENDE + D_dom_nr_fc_st.fillna(0)"
     Currency_Based: "D_dom_fc_st.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 206}
 
 EXT_USD_MLT:
   Descriptor: "Locally-issued debt (external debt) - USD - o/w: medium- and long-term"
@@ -891,6 +899,8 @@ EXT_USD_MLT:
   Scale: "Million"
   Source: Calculation
   Formula: "EXT_USD_OUTSTANDING - EXT_USD_ST"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 205}
 
 EXT_USD_INT:
   Descriptor: "Locally-issued debt (external debt) - USD - Interest"
@@ -1028,19 +1038,19 @@ OLD_COMMERCIAL_TOTAL:
   Formula: "OLD_COM1.fillna(0) + OLD_COM2.fillna(0) + OLD_COM3.fillna(0) +
     OLD_COM4.fillna(0) + OLD_COM5.fillna(0)"
 
-OLD_TOTAL_DEBT:
+OLD_TOTAL_DEBT_EXCL_LOCAL:
   Descriptor: "Total old debt (multilateral + other multilateral + bilateral + commercial)"
   Units: "US Dollars"
   Scale: "Million"
   Source: Calculation
   Formula: "OLD_MULT_TOTAL + OLD_OTHER_MULT_TOTAL + OLD_BILATERAL_TOTAL + OLD_COMMERCIAL_TOTAL"
 
-OLD_TOTAL_DEBT_INT:
+OLD_TOTAL_DEBT_INT_EXCL_LOCAL:
   Descriptor: "Total old debt interest"
   Units: "US Dollars"
   Scale: "Million"
   Source: Calculation
-  Formula: "OLD_TOTAL_DEBT - OLD_TOTAL_P.fillna(0)"
+  Formula: "OLD_TOTAL_DEBT_EXCL_LOCAL - OLD_TOTAL_P.fillna(0)"
 
 EVOLUTION_DEBT_EXCL_LOCAL:
   Descriptor: "Evolution of external debt (excluding locally-issued debt) - Previous period value minus current principal payments"
@@ -1058,15 +1068,768 @@ EVOLUTION_DEBT_LOCAL:
     Residency_Based: "(OLD_DEBT_LC_NONRES + OLD_DEBT_FC_NONRES) / ENDE"
     Currency_Based: "OLD_DEBT_FC_RES / ENDE"
 
-EVOL_OLD_MLT_DEBT_EXCL_ARREARS:
+OLD_ARREARS:
+  Source: Calculation
+  Formula: "EXT_ARREARS.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 65}
+
+OLD_MLT_CHG:
   Descriptor: "Evolution of old medium- and long-term (MLT) debt, excluding arrears (nominal)"
   Units: "US Dollars"
   Scale: "Million"
   Source: Calculation
   Function:
     outstanding_from_old_debt:
-      initial_value: "PPG_X_MLT + EXT_USD_MLT - EXT_ARREARS.fillna(0)"
+      initial_value: "PPG_X_MLT + EXT_USD_MLT - OLD_ARREARS"
       payment: "OLD_TOTAL_P - (EVOLUTION_DEBT_LOCAL - EVOLUTION_DEBT_LOCAL.shift())"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 67}
+
+
+NEW_MULT_TOTAL:
+  Descriptor: "Total old multilateral debt (IMF, IDA, and core multilateral institutions)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NEW_IMF.fillna(0) + NEW_IDA1.fillna(0) + NEW_IDA2.fillna(0)
+    + NEW_MULTI1.fillna(0) + NEW_MULTI2.fillna(0) + NEW_MULTI3.fillna(0)"
+
+NEW_OTHER_MULT_TOTAL:
+  Descriptor: "Total old other multilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NEW_OTH_MULTI1.fillna(0) + NEW_OTH_MULTI2.fillna(0) +
+    NEW_OTH_MULTI3.fillna(0)"
+
+NEW_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NEW_PC1.fillna(0) + NEW_PC2.fillna(0) + NEW_PC3.fillna(0) +
+    NEW_PC4.fillna(0) + NEW_PC5.fillna(0)"
+
+NEW_NON_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Non-Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NEW_NPC1.fillna(0) + NEW_NPC2.fillna(0) + NEW_NPC3.fillna(0) +
+    NEW_NPC4.fillna(0) + NEW_NPC5.fillna(0)"
+
+NEW_BILATERAL_TOTAL:
+  Descriptor: "Total old bilateral debt (Paris Club + Non-Paris Club)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NEW_PARIS_CLUB_TOTAL + NEW_NON_PARIS_CLUB_TOTAL"
+
+NEW_COMMERCIAL_TOTAL:
+  Descriptor: "Total old commercial debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NEW_COM1.fillna(0) + NEW_COM2.fillna(0) + NEW_COM3.fillna(0) +
+    NEW_COM4.fillna(0) + NEW_COM5.fillna(0)"
+
+
+PV_NEW_IMF:
+  Descriptor: "IMF Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: imf
+      column: pv
+
+PV_NEW_IDA1:
+  Descriptor: "IDA - blend Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: ida1
+      column: pv
+
+PV_NEW_IDA2:
+  Descriptor: "IDA - blend Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: ida2
+      column: pv
+
+PV_NEW_MULTI1:
+  Descriptor: "Multilateral1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: multi1
+      column: pv
+
+PV_NEW_MULTI2:
+  Descriptor: "Multilateral2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: multi2
+      column: pv
+
+PV_NEW_MULTI3:
+  Descriptor: "Multilateral3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: multi3
+      column: pv
+
+PV_NEW_OTH_MULTI1:
+  Descriptor: "Other multilateral1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: other_multi1
+      column: pv
+
+PV_NEW_OTH_MULTI2:
+  Descriptor: "Other multilateral2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: other_multi2
+      column: pv
+
+PV_NEW_OTH_MULTI3:
+  Descriptor: "Other multilateral3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: other_multi3
+      column: pv
+
+PV_NEW_PC1:
+  Descriptor: "Paris Club1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc1
+      column: pv
+
+PV_NEW_PC2:
+  Descriptor: "Paris Club2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc2
+      column: pv
+
+PV_NEW_PC3:
+  Descriptor: "Paris Club3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc3
+      column: pv
+
+PV_NEW_PC4:
+  Descriptor: "Paris Club4 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc4
+      column: pv
+
+PV_NEW_PC5:
+  Descriptor: "Paris Club5 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc5
+      column: pv
+
+PV_NEW_NPC1:
+  Descriptor: "Non-Paris Club1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc1
+      column: pv
+
+PV_NEW_NPC2:
+  Descriptor: "Non-Paris Club2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc2
+      column: pv
+
+PV_NEW_NPC3:
+  Descriptor: "Non-Paris Club3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc3
+      column: pv
+
+PV_NEW_NPC4:
+  Descriptor: "Non-Paris Club4 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc4
+      column: pv
+
+PV_NEW_NPC5:
+  Descriptor: "Non-Paris Club5 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc5
+      column: pv
+
+PV_NEW_COM1:
+  Descriptor: "Commercial1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com1
+      column: pv
+
+PV_NEW_COM2:
+  Descriptor: "Commercial2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com2
+      column: pv
+
+PV_NEW_COM3:
+  Descriptor: "Commercial3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com3
+      column: pv
+
+PV_NEW_COM4:
+  Descriptor: "Commercial4 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com4
+      column: pv
+
+PV_NEW_COM5:
+  Descriptor: "Commercial5 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com5
+      column: pv
+
+
+PV_NEW_MULT_TOTAL:
+  Descriptor: "Total old multilateral debt (IMF, IDA, and core multilateral institutions)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PV_NEW_IMF + PV_NEW_IDA1 + PV_NEW_IDA2
+    + PV_NEW_MULTI1 + PV_NEW_MULTI2 + PV_NEW_MULTI3"
+
+PV_NEW_OTHER_MULT_TOTAL:
+  Descriptor: "Total old other multilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PV_NEW_OTH_MULTI1 + PV_NEW_OTH_MULTI2 + PV_NEW_OTH_MULTI3"
+
+PV_NEW_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PV_NEW_PC1 + PV_NEW_PC2 + PV_NEW_PC3 + PV_NEW_PC4 + PV_NEW_PC5"
+
+PV_NEW_NON_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Non-Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PV_NEW_NPC1 + PV_NEW_NPC2 + PV_NEW_NPC3 + PV_NEW_NPC4 + PV_NEW_NPC5"
+
+PV_NEW_BILATERAL_TOTAL:
+  Descriptor: "Total old bilateral debt (Paris Club + Non-Paris Club)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PV_NEW_PARIS_CLUB_TOTAL + PV_NEW_NON_PARIS_CLUB_TOTAL"
+
+PV_NEW_COMMERCIAL_TOTAL:
+  Descriptor: "Total old commercial debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PV_NEW_COM1 + PV_NEW_COM2 + PV_NEW_COM3 + PV_NEW_COM4 + PV_NEW_COM5"
 
 
 
+NOM_NEW_IMF:
+  Descriptor: "IMF Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: imf
+      column: stock_of_new_forex_debt
+
+NOM_NEW_IDA1:
+  Descriptor: "IDA - blend Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: ida1
+      column: stock_of_new_forex_debt
+
+NOM_NEW_IDA2:
+  Descriptor: "IDA - blend Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: ida2
+      column: stock_of_new_forex_debt
+
+NOM_NEW_MULTI1:
+  Descriptor: "Multilateral1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: multi1
+      column: stock_of_new_forex_debt
+
+NOM_NEW_MULTI2:
+  Descriptor: "Multilateral2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: multi2
+      column: stock_of_new_forex_debt
+
+NOM_NEW_MULTI3:
+  Descriptor: "Multilateral3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: multi3
+      column: stock_of_new_forex_debt
+
+NOM_NEW_OTH_MULTI1:
+  Descriptor: "Other multilateral1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: other_multi1
+      column: stock_of_new_forex_debt
+
+NOM_NEW_OTH_MULTI2:
+  Descriptor: "Other multilateral2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: other_multi2
+      column: stock_of_new_forex_debt
+
+NOM_NEW_OTH_MULTI3:
+  Descriptor: "Other multilateral3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: other_multi3
+      column: stock_of_new_forex_debt
+
+NOM_NEW_PC1:
+  Descriptor: "Paris Club1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc1
+      column: stock_of_new_forex_debt
+
+NOM_NEW_PC2:
+  Descriptor: "Paris Club2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc2
+      column: stock_of_new_forex_debt
+
+NOM_NEW_PC3:
+  Descriptor: "Paris Club3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc3
+      column: stock_of_new_forex_debt
+
+NOM_NEW_PC4:
+  Descriptor: "Paris Club4 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc4
+      column: stock_of_new_forex_debt
+
+NOM_NEW_PC5:
+  Descriptor: "Paris Club5 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: pc5
+      column: stock_of_new_forex_debt
+
+NOM_NEW_NPC1:
+  Descriptor: "Non-Paris Club1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc1
+      column: stock_of_new_forex_debt
+
+NOM_NEW_NPC2:
+  Descriptor: "Non-Paris Club2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc2
+      column: stock_of_new_forex_debt
+
+NOM_NEW_NPC3:
+  Descriptor: "Non-Paris Club3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc3
+      column: stock_of_new_forex_debt
+
+NOM_NEW_NPC4:
+  Descriptor: "Non-Paris Club4 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc4
+      column: stock_of_new_forex_debt
+
+NOM_NEW_NPC5:
+  Descriptor: "Non-Paris Club5 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: npc5
+      column: stock_of_new_forex_debt
+
+NOM_NEW_COM1:
+  Descriptor: "Commercial1 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com1
+      column: stock_of_new_forex_debt
+
+NOM_NEW_COM2:
+  Descriptor: "Commercial2 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com2
+      column: stock_of_new_forex_debt
+
+NOM_NEW_COM3:
+  Descriptor: "Commercial3 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com3
+      column: stock_of_new_forex_debt
+
+NOM_NEW_COM4:
+  Descriptor: "Commercial4 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com4
+      column: stock_of_new_forex_debt
+
+NOM_NEW_COM5:
+  Descriptor: "Commercial5 Present Value"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: com5
+      column: stock_of_new_forex_debt
+
+
+NOM_NEW_MULTI:
+  Descriptor: "Total old multilateral debt (IMF, IDA, and core multilateral institutions)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NOM_NEW_IMF + NOM_NEW_IDA1 + NOM_NEW_IDA2
+    + NOM_NEW_MULTI1 + NOM_NEW_MULTI2 + NOM_NEW_MULTI3"
+
+NOM_NEW_OTH_MULTI:
+  Descriptor: "Total old other multilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NOM_NEW_OTH_MULTI1 + NOM_NEW_OTH_MULTI2 + NOM_NEW_OTH_MULTI3"
+
+NOM_NEW_PC:
+  Descriptor: "Total old Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NOM_NEW_PC1 + NOM_NEW_PC2 + NOM_NEW_PC3 + NOM_NEW_PC4 + NOM_NEW_PC5"
+
+NOM_NEW_NPC:
+  Descriptor: "Total old Non-Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NOM_NEW_NPC1 + NOM_NEW_NPC2 + NOM_NEW_NPC3 + NOM_NEW_NPC4 + NOM_NEW_NPC5"
+
+NOM_NEW_OB:
+  Descriptor: "Total old bilateral debt (Paris Club + Non-Paris Club)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NOM_NEW_PC + NOM_NEW_NPC"
+
+NOM_NEW_COM:
+  Descriptor: "Total old commercial debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "NOM_NEW_COM1 + NOM_NEW_COM2 + NOM_NEW_COM3 + NOM_NEW_COM4 + NOM_NEW_COM5"
+
+NOM_NEW_EXT:
+  Source: Calculation
+  Formula: "NOM_NEW_MULTI + NOM_NEW_OTH_MULTI + NOM_NEW_OB + NOM_NEW_COM"
+
+PV_New_dom_nr_1_3_lc:
+  Source: Calculation
+  Function:
+    local_currency_debt:
+      name: bound_nr_1_3_lc
+      column: pv_usd
+
+PV_New_dom_nr_4_7_lc:
+  Source: Calculation
+  Function:
+    local_currency_debt:
+      name: bound_nr_4_7_lc
+      column: pv_usd
+
+PV_New_dom_nr_7_lc:
+  Source: Calculation
+  Function:
+    local_currency_debt:
+      name: bound_nr_b_7_lc
+      column: pv_usd
+
+PV_New_dom_nr_lc:
+  Source: Calculation
+  Formula: "PV_New_dom_nr_1_3_lc + PV_New_dom_nr_4_7_lc + PV_New_dom_nr_7_lc"
+
+
+NOM_New_dom_nr_1_3_lc:
+  Source: Calculation
+  Function:
+    local_currency_debt:
+      name: bound_nr_1_3_lc
+      column: pv_usd
+
+NOM_New_dom_nr_4_7_lc:
+  Source: Calculation
+  Function:
+    local_currency_debt:
+      name: bound_nr_4_7_lc
+      column: pv_usd
+
+NOM_New_dom_nr_7_lc:
+  Source: Calculation
+  Function:
+    local_currency_debt:
+      name: bound_nr_b_7_lc
+      column: pv_usd
+
+NOM_New_dom_nr_lc:
+  Source: Calculation
+  Formula: "NOM_New_dom_nr_1_3_lc + NOM_New_dom_nr_4_7_lc + NOM_New_dom_nr_7_lc"
+
+
+NOM_New_dom_nr_1_3_fc:
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: bound_nr_1_3_fc
+      external: false
+      column: pv
+
+NOM_New_dom_nr_4_7_fc:
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: bound_nr_4_7_fc
+      external: false
+      column: pv
+
+NOM_New_dom_nr_7_fc:
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: bound_nr_b_7_fc
+      external: false
+      column: pv
+
+NOM_New_dom_nr_fc:
+  Source: Calculation
+  Formula: "NOM_New_dom_nr_1_3_fc + NOM_New_dom_nr_4_7_fc + NOM_New_dom_nr_7_fc"
+
+
+NOM_New_dom_1_3_fc:
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: bound_nr_1_3_fc
+      external: false
+      column: pv
+
+NOM_New_dom_4_7_fc:
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: bound_nr_4_7_fc
+      external: false
+      column: pv
+
+NOM_New_dom_7_fc:
+  Source: Calculation
+  Function:
+    foreign_currency_debt:
+      name: bound_nr_b_7_fc
+      external: false
+      column: pv
+
+NOM_New_dom_fc:
+  Source: Calculation
+  Formula: "NOM_New_dom_1_3_fc + NOM_New_dom_4_7_fc + NOM_New_dom_7_fc"
+
+
+NOM_NEW_MLT:
+  Source: Calculation
+  Formula:
+    Residency_Based: "NOM_NEW_EXT + NOM_New_dom_nr_fc + NOM_New_dom_nr_lc"
+    Currency_Based: "NOM_NEW_EXT + NOM_New_dom_fc + NOM_New_dom_nr_fc"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 313}
+
+
+TEST_PRE_POST:
+  Source: Calculation
+  Formula:
+    Pre_Projection: "PPG_X_MLT + EXT_USD_OUTSTANDING"
+    Post_Projection: "OLD_MLT_CHG + OLD_ARREARS + NOM_NEW_MLT"

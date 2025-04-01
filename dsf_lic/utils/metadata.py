@@ -16,11 +16,12 @@ class Settings(NamedTuple):
     projection_year: int
     last_year: int
     residency_based: bool
+    discount_rate: float
 
 
 class Metadata:
     external_loans: dict
-    internal_finacing: dict
+    internal_financing: dict
     variables: dict
 
     def __init__(self):
@@ -39,6 +40,7 @@ class Metadata:
             last_year = settings["Last Year"],
             residency_based =
             settings["Definition of External/Domestic Debt"] == "Residency-Based",
+            discount_rate = settings["Discount Rate"],
         )
 
     def _load_metadata(self) -> None:
