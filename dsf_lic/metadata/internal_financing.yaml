@@ -2,83 +2,117 @@ centeral_bank:
   disbursement: New_dom_cb
   grace_period: 0
   loan_maturity: 1
+  prefix: New_dom_cb
+  group: New_dom_lc_st
 
 tbills_lc:
   disbursement: New_dom_tbill_lc
   grace_period: 0
   loan_maturity: 1
+  prefix: New_dom_tbill_lc
+  group: New_dom_lc_st
 
 tbills_nr_lc:
   disbursement: New_dom_nr_tbill_lc
   grace_period: 0
   loan_maturity: 1
+  prefix: New_dom_nr_tbill_lc
+  group: New_dom_nr_lc_st
 
 tbills_fc:
   disbursement: New_dom_tbill_fc
   grace_period: 0
   loan_maturity: 1
+  prefix: New_dom_tbill_fc
+  group: New_dom_fc_st
 
 tbills_nr_fc:
   disbursement: New_dom_nr_tbill_fc
   grace_period: 0
   loan_maturity: 1
+  prefix: New_dom_nr_tbill_fc
+  group: New_dom_nr_fc_st
 
 bound_1_3_lc:
   disbursement: New_dom_1_3_lc
   grace_period: 1
   loan_maturity: 2
+  prefix: New_dom_1_3_lc
+  group: New_dom_lc
 
 bound_nr_1_3_lc:
   disbursement: New_dom_nr_1_3_lc
   grace_period: 1
   loan_maturity: 2
+  prefix: New_dom_nr_1_3_lc
+  group: New_dom_nr_lc
 
 bound_4_7_lc:
   disbursement: New_dom_4_7_lc
   grace_period: 3
   loan_maturity: 5
+  prefix: New_dom_4_7_lc
+  group: New_dom_lc
 
 bound_nr_4_7_lc:
   disbursement: New_dom_nr_4_7_lc
   grace_period: 3
   loan_maturity: 5
+  prefix: New_dom_nr_4_7_lc
+  group: New_dom_nr_lc
 
 bound_b_7_lc:
   disbursement: New_dom_7_lc
   grace_period: 6
   loan_maturity: 7
+  prefix: New_dom_7_lc
+  group: New_dom_lc
 
 bound_nr_b_7_lc:
   disbursement: New_dom_nr_7_lc
   grace_period: 6
   loan_maturity: 7
+  prefix: New_dom_nr_7_lc
+  group: New_dom_nr_lc
 
 bound_1_3_fc:
   disbursement: New_dom_1_3_fc
   grace_period: 1
   loan_maturity: 2
+  prefix: New_dom_1_3_fc
+  group: New_dom_fc
 
 bound_nr_1_3_fc:
   disbursement: New_dom_nr_1_3_fc
   grace_period: 1
   loan_maturity: 2
+  prefix: New_dom_nr_1_3_fc
+  group: New_dom_nr_fc
 
 bound_4_7_fc:
   disbursement: New_dom_4_7_fc
   grace_period: 3
   loan_maturity: 5
+  prefix: New_dom_4_7_fc
+  group: New_dom_fc
 
 bound_nr_4_7_fc:
   disbursement: New_dom_nr_4_7_fc
   grace_period: 3
   loan_maturity: 5
+  prefix: New_dom_nr_4_7_fc
+  group: New_dom_nr_fc
 
 bound_b_7_fc:
   disbursement: New_dom_7_fc
   grace_period: 6
   loan_maturity: 7
+  prefix: New_dom_7_fc
+  group: New_dom_fc
 
 bound_nr_b_7_fc:
   disbursement: New_dom_nr_7_fc
   grace_period: 6
   loan_maturity: 7
+  prefix: New_dom_nr_7_fc
+  group: New_dom_nr_fc

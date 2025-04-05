@@ -1,0 +1,41 @@
+Budget_Deficit:
+  Source: Calculation
+  Formula: "GE - GRG"
+
+
+Trade_Deficit:
+  Source: Calculation
+  Formula: "BM - BX"
+
+NCT:
+  Source: Calculation
+  Formula: "-BIT"
+
+NCTG:
+  Source: Calculation
+  Formula: "-BITG"
+
+NFDI:
+  Source: Calculation
+  Formula: "-BFD"
+
+NGDP_R_growth:
+  Source: Calculation
+  Formula: "(NGDP_R / NGDP_R.shift() - 1) * 100"
+  Corresponding_Values:
+    - {sheet: "Output 1-1 - External DSA", row: 38}
+    - {sheet: "Baseline - external", row: 52}
+    - {sheet: "Output 1-2 - Public DSA", row: 42}
+
+GDP_Deflator_Index_USD:
+  Source: Calculation
+  Formula: "NGDPD / NGDP_R * 100"
+  Corresponding_Values:
+    - {sheet: "Macro-Debt_Data", row: 110}
+
+GDP_Deflator_Index_USD_growth:
+  Source: Calculation
+  Formula: "(GDP_Deflator_Index_USD / GDP_Deflator_Index_USD.shift() - 1) * 100"
+  Corresponding_Values:
+    - {sheet: "Output 1-1 - External DSA", row: 39}
+    - {sheet: "Baseline - external", row: 53}

@@ -3,6 +3,7 @@ import importlib
 
 import pandas as pd
 
+from .. import steps
 from ..utils.metadata import metadata
 from .extrapolator import extrapolate
 
@@ -10,7 +11,13 @@ from .extrapolator import extrapolate
 def open_data() -> pd.DataFrame:
     metadata.reload_metadata()
     data = load_input()
-    data = apply_metadata(data)
+    data = apply_metadata(data, "inputs")
+    data = apply_metadata(data, "macroeconomics")
+    data = steps.add_foreign_currency_financing(data)
+    data = steps.add_local_currency_financing(data)
+    data = steps.add_mlt_debts(data)
+    data = apply_metadata(data, "financing")
+    data = steps.add_per_gdp(data)
     data = data.round(6)
     return data
 
@@ -25,17 +32,18 @@ def load_input() -> pd.DataFrame:
     )
 
 
-def apply_metadata(data: pd.DataFrame) -> pd.DataFrame:
-    for column_name in metadata.variables:
-        data = apply_metadata_for_column(column_name, data)
+def apply_metadata(data: pd.DataFrame, file: str) -> pd.DataFrame:
+    for column_name in metadata.variables[file]:
+        data = apply_metadata_for_column(file=file, column_name=column_name, data=data)
     return data
 
 
 def apply_metadata_for_column(
+    file: str,
     column_name: str,
     data: pd.DataFrame
 ) -> pd.DataFrame:
-    column_metadata = metadata.variables[column_name]
+    column_metadata = metadata.variables[file][column_name]
 
     if column_metadata["Source"] == "Input":
         assert column_name in data.columns
@@ -72,6 +80,7 @@ def apply_metadata_for_column(
         func = getattr(variable_functions, function_name)
         data[column_name] = func(**parameters)
     else:
+        print(column_metadata)
         raise KeyError
         
 

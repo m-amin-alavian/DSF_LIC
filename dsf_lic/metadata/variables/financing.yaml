@@ -1,0 +1,421 @@
+i3_186:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Outstanding"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_lc.fillna(0)"
+    Currency_Based: "D_dom_lc.fillna(0) + D_dom_fc.fillna(0) * ENDE"
+
+i3_188:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_lc_st.fillna(0)"
+    Currency_Based: "D_dom_lc_st.fillna(0) + D_dom_fc_st.fillna(0) * ENDE"
+
+i3_187:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - o/w: medium- and long-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "i3_186 - i3_188"
+
+i3_189:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Interest"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_lc.fillna(0)"
+    Currency_Based: "Ds_dom_lc.fillna(0) + DS_dom_fc.fillna(0) * ENDE"
+
+i3_190:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Principal"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_p_dom_lc.fillna(0)"
+    Currency_Based: "DS_p_dom_lc.fillna(0) + DS_p_dom_fc.fillna(0) * ENDE"
+
+i3_192:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Principal - o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_lc_st.fillna(0).shift()"
+    Currency_Based: "D_dom_lc_st.fillna(0).shift() + D_dom_fc_st.fillna(0).shift() * ENDA"
+
+i3_191:
+  Descriptor: "Locally-issued debt (domestic debt) - LCU - Principal - o/w: medium- and long-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "i3_190 - i3_192"
+
+i3_204:
+  Descriptor: "Locally-issued debt (external debt) - USD - Outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_nr_lc.fillna(0) / ENDE + D_dom_nr_fc.fillna(0)"
+    Currency_Based: "D_dom_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 204}
+
+i3_206:
+  Descriptor: "Locally-issued debt (external debt) - USD - o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "D_dom_nr_lc_st.fillna(0) / ENDE + D_dom_nr_fc_st.fillna(0)"
+    Currency_Based: "D_dom_fc_st.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 206}
+
+i3_205:
+  Descriptor: "Locally-issued debt (external debt) - USD - o/w: medium- and long-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "i3_204 - i3_206"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 205}
+
+i3_207:
+  Descriptor: "Locally-issued debt (external debt) - USD - Interest"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_nr_lc.fillna(0) / ENDA + DS_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_dom_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 207}
+
+i3_208:
+  Descriptor: "Locally-issued debt (external debt) - USD - Principal"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_p_dom_nr_lc.fillna(0) / ENDA + DS_p_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_p_dom_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 208}
+
+
+i5_162:
+  Descriptor: "Outstanding from OLD debt in local currency (residents)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_lc
+      payment: DS_p_dom_lc
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 162}
+
+i5_164:
+  Descriptor: "Outstanding from OLD debt in foreign currency (residents)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_fc
+      payment: DS_p_dom_fc
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 164}
+
+i5_163:
+  Source: Calculation
+  Formula: "i5_164 * ENDE"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 163}
+
+i5_166:
+  Descriptor: "Outstanding from OLD debt in local currency (non-residents)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_nr_lc
+      payment: DS_p_dom_nr_lc
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 166}
+
+i5_168:
+  Descriptor: "Outstanding from OLD debt in foreign currency (non-residents)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: D_dom_nr_fc
+      payment: DS_p_dom_nr_fc
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 168}
+
+i5_167:
+  Source: Calculation
+  Formula: "i5_168 * ENDE"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 167}
+
+i5_188:
+  Source: Calculation
+  Formula: "New_dom_tbill_fc.fillna(0).shift() / ENDA * ENDA.shift()"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 188}
+
+i5_191:
+  Source: Calculation
+  Formula: "New_dom_nr_tbill_lc.fillna(0).shift()"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 191}
+
+i5_193:
+  Source: Calculation
+  Formula: "New_dom_nr_tbill_fc.fillna(0).shift() / ENDA * ENDA.shift()"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 193}
+
+
+OLD_MULT_TOTAL:
+  Descriptor: "Total old multilateral debt (IMF, IDA, and core multilateral institutions)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_IMF.fillna(0) + OLD_IDA1.fillna(0) + OLD_IDA2.fillna(0)
+    + OLD_MULTI1.fillna(0) + OLD_MULTI2.fillna(0) + OLD_MULTI3.fillna(0)"
+
+OLD_OTHER_MULT_TOTAL:
+  Descriptor: "Total old other multilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_OTH_MULTI1.fillna(0) + OLD_OTH_MULTI2.fillna(0) +
+    OLD_OTH_MULTI3.fillna(0)"
+
+OLD_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_PC1.fillna(0) + OLD_PC2.fillna(0) + OLD_PC3.fillna(0) +
+    OLD_PC4.fillna(0) + OLD_PC5.fillna(0)"
+
+OLD_NON_PARIS_CLUB_TOTAL:
+  Descriptor: "Total old Non-Paris Club bilateral debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_NPC1.fillna(0) + OLD_NPC2.fillna(0) + OLD_NPC3.fillna(0) +
+    OLD_NPC4.fillna(0) + OLD_NPC5.fillna(0)"
+
+OLD_BILATERAL_TOTAL:
+  Descriptor: "Total old bilateral debt (Paris Club + Non-Paris Club)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_PARIS_CLUB_TOTAL + OLD_NON_PARIS_CLUB_TOTAL"
+
+OLD_COMMERCIAL_TOTAL:
+  Descriptor: "Total old commercial debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_COM1.fillna(0) + OLD_COM2.fillna(0) + OLD_COM3.fillna(0) +
+    OLD_COM4.fillna(0) + OLD_COM5.fillna(0)"
+
+edd_42:
+  Descriptor: "Total old debt (multilateral + other multilateral + bilateral + commercial)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "OLD_MULT_TOTAL + OLD_OTHER_MULT_TOTAL + OLD_BILATERAL_TOTAL + OLD_COMMERCIAL_TOTAL"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 42}
+
+edd_44:
+  Descriptor: "Total old debt interest"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "edd_42 - OLD_TOTAL_P.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 44}
+
+# edd_50:
+#   Source: Calculation
+#   Formula:
+#     Residency_Based: "(DS_dom_nr_lc.fillna(0) + DS_p_dom_nr_lc.fillna(0)) / ENDA"
+#     Currency_Based: "0"
+#   Corresponding_Values:
+#     - {sheet: "Ext_Debt_Data", row: 50}
+
+# edd_51:
+#   Source: Calculation
+#   Formula:
+#     Residency_Based: "DS_dom_nr_fc.fillna(0) + DS_p_dom_nr_fc.fillna(0)"
+#     Currency_Based: "0"
+#   Corresponding_Values:
+#     - {sheet: "Ext_Debt_Data", row: 51}
+
+# edd_49:
+#   Source: Calculation
+#   Formula: "edd_50 + edd_51"
+#   Corresponding_Values:
+#     - {sheet: "Ext_Debt_Data", row: 49}
+
+# edd_53:
+#   Source: Calculation
+#   Formula:
+#     Residency_Based: "DS_dom_fc.fillna(0) + DS_p_dom_fc.fillna(0)"
+#     Currency_Based: "0"
+#   Corresponding_Values:
+#     - {sheet: "Ext_Debt_Data", row: 53}
+
+
+edd_56:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_p_dom_nr_lc.fillna(0) / ENDA + DS_p_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_p_dom_fc.fillna(0) + DS_p_dom_nr_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 56}
+
+edd_57:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_nr_lc.fillna(0) / ENDA + DS_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_dom_fc.fillna(0) + DS_dom_nr_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 57}
+
+edd_55:
+  Source: Calculation
+  Formula: "edd_56 + edd_57"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 55}
+
+edd_58:
+  Source: Calculation
+  Formula:
+    Residency_Based: "i5_166 / ENDE + i5_168"
+    Currency_Based: "i5_164"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 58}
+
+edd_61:
+  Source: Calculation
+  Formula: "edd_42 + edd_55"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 61}
+
+edd_67:
+  Descriptor: "Evolution of old medium- and long-term (MLT) debt, excluding arrears (nominal)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Function:
+    outstanding_from_old_debt:
+      initial_value: "PPG_X_MLT + i3_205 - EXT_ARREARS.fillna(0)"
+      payment: "OLD_TOTAL_P - (edd_58 - edd_58.shift())"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 67}
+
+edd_362:
+  Descriptor: "Nominal value (=PV) of ST debt (locally-issued debt)"
+  Source: Calculation
+  Formula:
+    Residency_Based: "i5_191.shift(-1) + i5_193.shift(-1) / ENDE"
+    Currency_Based: "i5_188.shift(-1) / ENDE"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 362}
+
+
+mdd_9:
+  Descriptor: "Medium and Long Term (MLT) external"
+  Units: "US Dollars"
+  Source: Calculation
+  Formula:
+    Pre_Projection: "PPG_X_MLT.fillna(0) + i3_204"
+    Post_Projection: "edd_67 + EXT_ARREARS.fillna(0) + NEW_MLT_NOM"
+  Corresponding_Values:
+    - {sheet: "Macro-Debt_Data", row: 9}
+
+mdd_10:
+  Source: Calculation
+  Descriptor: "Short Term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Formula:
+    Pre_Projection: "PPG_X_ST.fillna(0) + i3_206"
+    Post_Projection: "PPG_X_ST.fillna(0) + edd_362"
+
+mdd_8:
+  Source: Calculation
+  Formula: "mdd_9 + mdd_10"
+
+mdd_19:
+  Descriptor: "Public and publicly guaranteed"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "X_PPG_INT.fillna(0) + i3_207"
+
+mdd_18:
+  Descriptor: "Total external debt interest due (include interest from new debt)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "mdd_19 + X_P_INT.fillna(0)"
+
+
+i5_143:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_lc.fillna(0) + DS_dom_fc.fillna(0) * ENDA"
+    Currency_Based: "DS_dom_lc.fillna(0)"
+
+i5_151:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_p_dom_lc.fillna(0) + DS_p_dom_fc.fillna(0) * ENDA"
+    Currency_Based: "DS_p_dom_lc.fillna(0)"
+
+i5_140:
+  Source: Calculation
+  Formula: "i5_143 + i5_151"
+
+i5_42:
+  Source: Calculation
+  Formula: "i5_140 + edd_61 * ENDA"
+
+# i5_174:
+#   Source: Calculation
+
+
+# i5_214:
+#   Descriptor: Interest payment
+#   Source: Calculation
+#   Formula: "i5_143 + i5_174"
+
+# mdd_21:
+#   Descriptor: "Total public domestic debt interest due"
+#   Units: "US Dollars"
+#   Scale: "Million"
+#   Source: Calculation
+#   Formula:
+#     Pre_Projection: "i3_189 / ENDA"
+#     Post_Projection: "i5_214 / ENDA"

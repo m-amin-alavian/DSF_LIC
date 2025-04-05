@@ -3,12 +3,18 @@ imf:
   interest_rate: 0.25
   grace_period: 5
   loan_maturity: 10
+  prefix: NEW_IMF
+  group: NEW_MULTI
+  sub_group: NEW_MEIN_MULTI
 
 ida1:
   disbursement: NEW_IDA1
   interest_rate: 2
   grace_period: 5
   loan_maturity: 30
+  prefix: NEW_IDA1
+  group: NEW_MULTI
+  sub_group: NEW_MEIN_MULTI
   repayment_schedule: blend
 
 ida2:
@@ -17,42 +23,63 @@ ida2:
   grace_period: 5
   loan_maturity: 30
   repayment_schedule: blend
+  prefix: NEW_IDA2
+  group: NEW_MULTI
+  sub_group: NEW_MEIN_MULTI
 
 multi1:
   disbursement: NEW_MULTI1
   interest_rate: 0.75
   grace_period: 6
   loan_maturity: 38
+  prefix: NEW_MULTI1
+  group: NEW_MULTI
+  sub_group: NEW_MEIN_MULTI
 
 multi2:
   disbursement: NEW_MULTI2
   interest_rate: 0.75
   grace_period: 5
   loan_maturity: 30
+  prefix: NEW_MULTI2
+  group: NEW_MULTI
+  sub_group: NEW_MEIN_MULTI
 
 multi3:
   disbursement: NEW_MULTI3
   interest_rate: 0
   grace_period: 5
   loan_maturity: 30
+  prefix: NEW_MULTI3
+  group: NEW_MULTI
+  sub_group: NEW_MEIN_MULTI
 
 other_multi1:
   disbursement: NEW_OTH_MULTI1
   interest_rate: 2.5
   grace_period: 5
   loan_maturity: 20
+  prefix: NEW_OTH_MULTI1
+  group: NEW_MULTI
+  sub_group: NEW_OTH_MULTI
 
 other_multi2:
   disbursement: NEW_OTH_MULTI2
   interest_rate: 2
   grace_period: 5
   loan_maturity: 25
+  prefix: NEW_OTH_MULTI2
+  group: NEW_MULTI
+  sub_group: NEW_OTH_MULTI
 
 other_multi3:
   disbursement: NEW_OTH_MULTI3
   interest_rate: 2
   grace_period: 5
   loan_maturity: 30
+  prefix: NEW_OTH_MULTI3
+  group: NEW_MULTI
+  sub_group: NEW_OTH_MULTI
 
 pc1:
   description: Official Bilaterals, Paris Club, Export Credit Agencies
@@ -60,30 +87,45 @@ pc1:
   interest_rate: 1.77
   grace_period: 7
   loan_maturity: 20
+  prefix: NEW_PC1
+  group: NEW_OB
+  sub_group: NEW_PC
 
 pc2:
   disbursement: NEW_PC2
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_PC2
+  group: NEW_OB
+  sub_group: NEW_PC
 
 pc3:
   disbursement: NEW_PC3
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_PC3
+  group: NEW_OB
+  sub_group: NEW_PC
 
 pc4:
   disbursement: NEW_PC4
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_PC4
+  group: NEW_OB
+  sub_group: NEW_PC
 
 pc5:
   disbursement: NEW_PC5
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_PC5
+  group: NEW_OB
+  sub_group: NEW_PC
 
 npc1:
   description: Official Bilaterals, Non-Paris Club, Export Import Bank of NPC
@@ -91,30 +133,45 @@ npc1:
   interest_rate: 3.18
   grace_period: 5
   loan_maturity: 15
+  prefix: NEW_NPC1
+  group: NEW_OB
+  sub_group: NEW_NPC
 
 npc2:
   disbursement: NEW_NPC2
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_NPC2
+  group: NEW_OB
+  sub_group: NEW_NPC
 
 npc3:
   disbursement: NEW_NPC3
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_NPC3
+  group: NEW_OB
+  sub_group: NEW_NPC
 
 npc4:
   disbursement: NEW_NPC4
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_NPC4
+  group: NEW_OB
+  sub_group: NEW_NPC
 
 npc5:
   disbursement: NEW_NPC5
   interest_rate: 2
   grace_period: 1
   loan_maturity: 2
+  prefix: NEW_NPC5
+  group: NEW_OB
+  sub_group: NEW_NPC
 
 com1:
   description: Eurobond
@@ -122,6 +179,8 @@ com1:
   interest_rate: 9
   grace_period: 9
   loan_maturity: 12
+  prefix: NEW_COM1
+  group: NEW_COM
 
 com2:
   description: Commecial Bank
@@ -129,21 +188,29 @@ com2:
   interest_rate: 5
   grace_period: 3
   loan_maturity: 12
+  prefix: NEW_COM2
+  group: NEW_COM
 
 com3:
   disbursement: NEW_COM3
   interest_rate: 5
   grace_period: 1
   loan_maturity: 5
+  prefix: NEW_COM3
+  group: NEW_COM
 
 com4:
   disbursement: NEW_COM4
   interest_rate: 5
   grace_period: 1
   loan_maturity: 5
+  prefix: NEW_COM4
+  group: NEW_COM
 
 com5:
   disbursement: NEW_COM5
   interest_rate: 5
   grace_period: 1
   loan_maturity: 5
+  prefix: NEW_COM5
+  group: NEW_COM

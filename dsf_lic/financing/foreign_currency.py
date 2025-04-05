@@ -11,8 +11,10 @@ class DebtInfo(NamedTuple):
     grace_period: int
     loan_maturity: int
     repayment_schedule: Optional[str] = None
+    prefix: str = ""
+    sub_group: str = ""
+    group: str = ""
     description: Optional[str] = None
-
 
 
 def get_debt_info(name: str, external: bool = True) -> DebtInfo:
@@ -85,11 +87,11 @@ def create_debt_table(name: str, data: pd.DataFrame, external: bool = True) -> p
             .sub(df["cumulative"].shift(loan_info.loan_maturity + 1, fill_value=0))
             .div(loan_info.loan_maturity - loan_info.grace_period),
 
-            stock_of_new_forex_debt = lambda df:
+            stock_of_debt = lambda df:
             df["disbursement"].sub(df["amortization"]).cumsum().clip(0).round(6),
 
             interest = lambda df:
-            df["stock_of_new_forex_debt"]
+            df["stock_of_debt"]
             .shift(1, fill_value=0).mul(loan_info.interest_rate).div(100),
 
             total_debt_service = lambda df: df["amortization"] + df["interest"],

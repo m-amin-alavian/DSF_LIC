@@ -760,6 +760,7 @@ RES:
   Scale: "Million"
   Source: Input
 
+
 # Locally-issued debt (domestic debt) - LCU
 DOM_LCU_OUTSTANDING:
   Descriptor: "Locally-issued debt (domestic debt) - LCU - Outstanding"
@@ -910,6 +911,8 @@ EXT_USD_INT:
   Formula:
     Residency_Based: "DS_dom_nr_lc.fillna(0) / ENDA + DS_dom_nr_fc.fillna(0)"
     Currency_Based: "DS_dom_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 207}
 
 EXT_USD_PRIN:
   Descriptor: "Locally-issued debt (external debt) - USD - Principal"
@@ -919,6 +922,8 @@ EXT_USD_PRIN:
   Formula:
     Residency_Based: "DS_p_dom_nr_lc.fillna(0) / ENDA + DS_p_dom_nr_fc.fillna(0)"
     Currency_Based: "DS_p_dom_fc.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 208}
 
 # Foreign currency-denominated debt (including locally-issued debt)
 FC_DEBT_TOTAL:
@@ -927,6 +932,8 @@ FC_DEBT_TOTAL:
   Scale: "Million"
   Source: Calculation
   Formula: "PPG_X_MLT + PPG_X_ST + D_dom_fc + D_dom_nr_fc"
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 210}
 
 
 # Input 5 - Local-debt Financing
@@ -1044,6 +1051,8 @@ OLD_TOTAL_DEBT_EXCL_LOCAL:
   Scale: "Million"
   Source: Calculation
   Formula: "OLD_MULT_TOTAL + OLD_OTHER_MULT_TOTAL + OLD_BILATERAL_TOTAL + OLD_COMMERCIAL_TOTAL"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 42}
 
 OLD_TOTAL_DEBT_INT_EXCL_LOCAL:
   Descriptor: "Total old debt interest"
@@ -1051,6 +1060,8 @@ OLD_TOTAL_DEBT_INT_EXCL_LOCAL:
   Scale: "Million"
   Source: Calculation
   Formula: "OLD_TOTAL_DEBT_EXCL_LOCAL - OLD_TOTAL_P.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 44}
 
 EVOLUTION_DEBT_EXCL_LOCAL:
   Descriptor: "Evolution of external debt (excluding locally-issued debt) - Previous period value minus current principal payments"
@@ -1828,8 +1839,163 @@ NOM_NEW_MLT:
     - {sheet: "Ext_Debt_Data", row: 313}
 
 
-TEST_PRE_POST:
+EXT_DEBT_PPG_MLT:
+  Descriptor: "Medium and Long Term (MLT) external"
+  Units: "US Dollars"
   Source: Calculation
   Formula:
-    Pre_Projection: "PPG_X_MLT + EXT_USD_OUTSTANDING"
+    Pre_Projection: "PPG_X_MLT.fillna(0) + EXT_USD_OUTSTANDING"
     Post_Projection: "OLD_MLT_CHG + OLD_ARREARS + NOM_NEW_MLT"
+  Corresponding_Values:
+    - {sheet: "Macro-Debt_Data", row: 9}
+
+NEW_DS_p_fc_st:
+  Source: Calculation
+  Formula: "New_dom_tbill_fc.fillna(0).shift() / ENDA * ENDA.shift()"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 188}
+
+NEW_DS_nr_p_lc_st:
+  Source: Calculation
+  Formula: "New_dom_nr_tbill_lc.fillna(0).shift()"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 191}
+
+NEW_DS_nr_p_fc_st:
+  Source: Calculation
+  Formula: "New_dom_nr_tbill_fc.fillna(0).shift() / ENDA * ENDA.shift()"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 193}
+
+NOM_New_dom_st:
+  Source: Calculation
+  Formula:
+    Residency_Based: "NEW_DS_nr_p_lc_st.shift(-1) + NEW_DS_nr_p_fc_st.shift(-1) / ENDE"
+    Currency_Based: "NEW_DS_p_fc_st.shift(-1) / ENDE"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 362}
+
+EXT_DEBT_PPG_ST:
+  Source: Calculation
+  Descriptor: "Short Term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Formula:
+    Pre_Projection: "PPG_X_ST.fillna(0) + EXT_USD_ST"
+    Post_Projection: "PPG_X_ST.fillna(0) + NOM_New_dom_st"
+
+EXT_DEBT_PPG_TOTAL:
+  Source: Calculation
+  Descriptor: "Public and publicly guaranteed external debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Formula: "EXT_DEBT_PPG_MLT + EXT_DEBT_PPG_ST"
+
+EXT_DEBT_PRIVATE_TOTAL:
+  Source: Calculation
+  Descriptor: "Private sector external debt"
+  Units: "US Dollars"
+  Scale: "Million"
+  Formula: "P_X_MLT.fillna(0) + P_X_ST.fillna(0)"
+
+EXT_DEBT_TOTAL:
+  Source: Calculation
+  Descriptor: "Total External Debt (public external + private external)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Formula: "EXT_DEBT_PPG_TOTAL + EXT_DEBT_PRIVATE_TOTAL"
+
+MLT_DEBT_TOTAL_YE:
+  Source: Calculation
+  Descriptor: "Total MLT debt outstanding at year-end 1/"
+  Units: "US Dollars"
+  Scale: "Million"
+  Formula: "EXT_DEBT_PPG_MLT + P_X_MLT.fillna(0)"
+
+DEBT_PUB_EXT:
+  Source: Calculation
+  Descriptor: "Total public external debt"
+  Units: "National Currency"
+  Scale: "Million"
+  Formula: "EXT_DEBT_PPG_TOTAL * ENDE"
+
+
+DEBT_PUB_EXT_per_gdp:
+  Source: Calculation
+  Formula: "DEBT_PUB_EXT / (NGDPD * ENDA) * 100"
+  Corresponding_Values:
+    - {sheet: "Output 1-1 - External DSA", row: 9}
+
+DEBT_PRI_EXT_per_gdp:
+  Source: Calculation
+  Formula: "EXT_DEBT_PRIVATE_TOTAL / NGDPD * 100"
+
+DEBT_EXT_per_gdp:
+  Source: Calculation
+  Formula: "DEBT_PUB_EXT_per_gdp + DEBT_PRI_EXT_per_gdp"
+  Corresponding_Values:
+    - {sheet: "Output 1-1 - External DSA", row: 8}
+
+DEBT_EXT_per_gdp_change:
+  Source: Calculation
+  Formula: "DEBT_EXT_per_gdp - DEBT_EXT_per_gdp.shift()"
+  Corresponding_Values:
+    - {sheet: "Output 1-1 - External DSA", row: 11}
+
+NGDP_R_growth:
+  Source: Calculation
+  Formula: "(NGDP_R / NGDP_R.shift() - 1) * 100"
+  Corresponding_Values:
+    - {sheet: "Output 1-1 - External DSA", row: 38}
+    - {sheet: "Output 1-2 - Public DSA", row: 42}
+
+GDP_Deflator_Index_USD:
+  Source: Calculation
+  Formula: "NGDPD / NGDP_R * 100"
+  Corresponding_Values:
+    - {sheet: "Macro-Debt_Data", row: 110}
+
+GDP_Deflator_Index_USD_growth:
+  Source: Calculation
+  Formula: "(GDP_Deflator_Index_USD / GDP_Deflator_Index_USD.shift() - 1) * 100"
+  Corresponding_Values:
+    - {sheet: "Output 1-1 - External DSA", row: 38}
+
+mdd_19:
+  Source: Calculation
+  Formula: "X_PPG_INT.fillna(0) + EXT_USD_INT"
+
+
+edd_56:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_p_dom_nr_lc.fillna(0) / ENDA + DS_p_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_p_dom_fc.fillna(0) + DS_p_dom_nr_fc.fillna(0)"
+
+edd_57:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_nr_lc.fillna(0) / ENDA + DS_dom_nr_fc.fillna(0)"
+    Currency_Based: "DS_dom_fc.fillna(0) + DS_dom_nr_fc.fillna(0)"
+
+edd_55:
+  Source: Calculation
+  Formula: "edd_56 + edd_57"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 55}
+
+edd_63:
+  Source: Calculation
+  Formula: "OLD_TOTAL_DEBT_INT_EXCL_LOCAL + edd_57"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 63}
+
+
+mdd_18:
+  Source: Calculation
+  Formula: "mdd_19 + X_P_INT.fillna(0)"
+
+Effective_interest_rate:
+  Source: Calculation
+  Formula: "mdd_18 / ((DEBT_EXT_per_gdp.shift() / 100) * NGDPD.shift()) * 100"
+

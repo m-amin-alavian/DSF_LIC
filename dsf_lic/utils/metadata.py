@@ -22,7 +22,7 @@ class Settings(NamedTuple):
 class Metadata:
     external_loans: dict
     internal_financing: dict
-    variables: dict
+    variables: dict[str, dict]
 
     def __init__(self):
         self.package_path = Path(__file__).parents[1]
@@ -44,13 +44,16 @@ class Metadata:
         )
 
     def _load_metadata(self) -> None:
-        for metadata in ["external_loans", "internal_financing", "variables"]:
+        for metadata in ["external_loans", "internal_financing"]:
             metadata_path = self.package_path.joinpath("metadata", f"{metadata}.yaml")
             setattr(
                 self,
                 metadata,
                 read_yaml_file(metadata_path)
             )
+        self.variables = {}
+        for path in self.package_path.joinpath("metadata", "variables").iterdir():
+            self.variables[path.stem] = read_yaml_file(path)
 
     @property
     def year_index(self) -> pd.Index:

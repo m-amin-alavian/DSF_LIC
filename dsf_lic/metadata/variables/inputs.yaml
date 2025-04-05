@@ -1,0 +1,918 @@
+# I. Macroeconomic Indicators
+
+## Real Sector
+
+NGDPD:
+  Descriptor: "Gross Domestic Product (US Dollars)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 12}
+
+NGDP_R:
+  Descriptor: "Real gross Domestic Product"
+  Units: "Index, National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 13}
+
+DSA_NFIG_R:
+  Descriptor: "Public Investment, constant prices"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 14}
+
+DSA_NFIP_R:
+  Descriptor: "Private Investment, constant price"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 15}
+
+DSA_NFIG_R_GDP_T_1:
+  Descriptor: "Public Investment in percent of GDP (real), previous DSA vintage"
+  Units: "Percent of GDP"
+  Scale: "Unit"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 16}
+
+DSA_NFIP_R_GDP_T_1:
+  Descriptor: "Private Investment in percent of GDP (real), previous DSA vintage"
+  Units: "Percent of GDP"
+  Scale: "Unit"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 17}
+
+W111NGDP_D:
+  Descriptor: "U.S. Deflator"
+  Units: "Index Number"
+  Scale: "Unit"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 18}
+
+ENDE:
+  Descriptor: "National Currency per U.S. Dollar (e.o.p.)"
+  Units: "National Currency per US Dollar"
+  Scale: "Unit"
+  Source: Input
+  Extrapolate: true
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 19}
+
+ENDA:
+  Descriptor: "National Currency per U.S. Dollar (p.a.)"
+  Units: "National Currency per US Dollar"
+  Scale: "Unit"
+  Source: Input
+  Extrapolate: true
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 20}
+
+
+## Fiscal Sector
+
+GRG:
+  Descriptor: "Government revenue and grants"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 22}
+
+GRGG:
+  Descriptor: "Government grants"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 23}
+
+GE:
+  Descriptor: "Government PRIMARY expenditures (this used to be total expenditure)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 24}
+
+PBA:
+  Descriptor: "Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 25}
+
+PBAF:
+  Descriptor: "Liquid financial assets used to meet GFNs, flow (e.g. -ve: drawdown; +ve: accumulation)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 26}
+
+GCFP:
+  Descriptor: "Privatization Proceeds"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 27}
+
+G_CL:
+  Descriptor: "Recognition of contingent liabilities (e.g., bank recapitalization)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 28}
+
+GCDRNM:
+  Descriptor: "Debt relief (non-multilateral HIPC)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 29}
+
+G_DCF:
+  Descriptor: "Other debt creating or reducing flow (please specify)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 30}
+
+PV_CL:
+  Descriptor: "PV of contingent liabilities (e.g., pension liabilities)"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 31}
+
+G_DCL:
+  Descriptor: "Concessional loans"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 32}
+
+
+## External Sector
+
+BCA:
+  Descriptor: "Current Account"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 34}
+
+BX:
+  Descriptor: "Exports of goods and services"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_fuel_ex:
+  Descriptor: "Exports - commodity (fuel)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_nfuel_ex:
+  Descriptor: "Exports - commodity (non_fuel)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BM:
+  Descriptor: "Imports of goods and services (enter as a positive number)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_fuel_im:
+  Descriptor: "Imports - commodity (fuel; enter as a positive number)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+Com_nfuel_im:
+  Descriptor: "Imports - commodity (non_fuel; enter as a positive number)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BIT:
+  Descriptor: "Current transfers (net)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BITG:
+  Descriptor: "Official grants (net)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BFD:
+  Descriptor: "Foreign direct investment"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BE:
+  Descriptor: "Exceptional Financing"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BITOW:
+  Descriptor: "Workers' remittances (gross) - informing the next roud CI / probability approach (optional)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+BFRA_CD:
+  Descriptor: "Change in Reserves, Gross (-: increase)"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+
+# II. Aggregate External Debt
+
+## PPG External Debt
+
+PPG_X_MLT:
+  Descriptor: "PPG MLT external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 51}
+
+PPG_X_ST:
+  Descriptor: "PPG ST external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_PPG_INT:
+  Descriptor: "PPG external debt interest due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_PPG_AMT:
+  Descriptor: "PPG TOTAL external debt amortization due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+EXT_ARREARS:
+  Descriptor: "PPG External arrears"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+P_X_MLT:
+  Descriptor: "Private sector MLT external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+P_X_ST:
+  Descriptor: "Private sector ST external debt outstanding"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_P_INT:
+  Descriptor: "Private external debt interest due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+X_P_AMT:
+  Descriptor: "Private MLT external debt amortization due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+
+# III. Old (Existing) Medium and Long-term external debt service due (scheduled) by main creditors (principal and interest):
+
+# Multilaterals (IMF / World Bank / Regional Development Bank (ADB, AfDB, etc.)
+
+OLD_IMF:
+  Descriptor: "IMF"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_IDA1:
+  Descriptor: "IDA"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_IDA2:
+  Descriptor: "IDA"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_MULTI1:
+  Descriptor: "Multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_MULTI2:
+  Descriptor: "Multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_MULTI3:
+  Descriptor: "Multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_OTH_MULTI1:
+  Descriptor: "Other Multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_OTH_MULTI2:
+  Descriptor: "Other Multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_OTH_MULTI3:
+  Descriptor: "Other Multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC1:
+  Descriptor: "Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC2:
+  Descriptor: "Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC3:
+  Descriptor: "Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC4:
+  Descriptor: "Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_PC5:
+  Descriptor: "Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC1:
+  Descriptor: "Non-Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC2:
+  Descriptor: "Non-Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC3:
+  Descriptor: "Non-Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC4:
+  Descriptor: "Non-Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_NPC5:
+  Descriptor: "Non-Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM1:
+  Descriptor: "Commercial1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM2:
+  Descriptor: "Commercial2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM3:
+  Descriptor: "Commercial3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM4:
+  Descriptor: "Commercial4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_COM5:
+  Descriptor: "Commercial5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+OLD_TOTAL_P:
+  Descriptor: "Total principal payment"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+
+# IV. New Medium and Long-term external debt disbursements (from 2018 onwards) by main creditors
+
+NEW_IMF:
+  Descriptor: "IMF"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_IDA1:
+  Descriptor: "IDA - blend"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_IDA2:
+  Descriptor: "IDA - blend"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_MULTI1:
+  Descriptor: "Multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_MULTI2:
+  Descriptor: "Multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_MULTI3:
+  Descriptor: "Multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_OTH_MULTI1:
+  Descriptor: "Other multilateral1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_OTH_MULTI2:
+  Descriptor: "Other multilateral2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_OTH_MULTI3:
+  Descriptor: "Other multilateral3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC1:
+  Descriptor: "Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC2:
+  Descriptor: "Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC3:
+  Descriptor: "Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC4:
+  Descriptor: "Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_PC5:
+  Descriptor: "Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC1:
+  Descriptor: "Non-Paris Club1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC2:
+  Descriptor: "Non-Paris Club2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC3:
+  Descriptor: "Non-Paris Club3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC4:
+  Descriptor: "Non-Paris Club4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_NPC5:
+  Descriptor: "Non-Paris Club5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM1:
+  Descriptor: "Commercial1"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM2:
+  Descriptor: "Commercial2"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM3:
+  Descriptor: "Commercial3"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM4:
+  Descriptor: "Commercial4"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+NEW_COM5:
+  Descriptor: "Commercial5"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+
+
+# V. Locally-issued debt
+# - Held by residents
+
+## Old (existing) debt outstanding
+
+D_dom_lc:
+  Descriptor: "Outstanding of existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 132}
+
+D_dom_lc_st:
+  Descriptor: "o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 133}
+
+D_dom_fc:
+  Descriptor: "Outstanding of existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 134}
+
+D_dom_fc_st:
+  Descriptor: "o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 135}
+
+
+## Old (existing) debt service
+
+DS_dom_lc:
+  Descriptor: "Interest payment from existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 137}
+
+DS_dom_fc:
+  Descriptor: "Interest payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 138}
+
+DS_p_dom_lc:
+  Descriptor: "Principal payment from existing debt in local currency"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 139}
+
+DS_p_dom_fc:
+  Descriptor: "Principal payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 140}
+
+
+## Disbursements
+
+### Central bank
+
+New_dom_cb:
+  Descriptor: "New gross disbursement_Central bank"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 143}
+
+
+### Short term
+
+New_dom_tbill_lc:
+  Descriptor: "New gross disbursement_T-bills_in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 145}
+
+New_dom_tbill_fc:
+  Descriptor: "New gross disbursement_T-bills_in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 146}
+
+
+### ML term
+
+New_dom_1_3_lc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 148}
+
+New_dom_4_7_lc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 149}
+
+New_dom_7_lc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 150}
+
+New_dom_1_3_fc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 151}
+
+New_dom_4_7_fc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 152}
+
+New_dom_7_fc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 153}
+
+
+# VI. Locally-issued debt
+# - Held by non-residents - populate here when a DSA is conducted on a residency-basis only
+
+# Old (existing) debt outstanding
+
+D_dom_nr_lc:
+  Descriptor: "Outstanding of existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 157}
+
+D_dom_nr_lc_st:
+  Descriptor: "o/w: short-term"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 158}
+
+D_dom_nr_fc:
+  Descriptor: "Outstanding of existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 159}
+
+D_dom_nr_fc_st:
+  Descriptor: "o/w: short-term"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 160}
+
+
+## Old (existing) debt service
+
+DS_dom_nr_lc:
+  Descriptor: "Interest payment from existing debt in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 162}
+
+DS_dom_nr_fc:
+  Descriptor: "Interest payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 163}
+
+DS_p_dom_nr_lc:
+  Descriptor: "Principal payment from existing debt in local currency"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 164}
+
+DS_p_dom_nr_fc:
+  Descriptor: "Principal payment from existing debt in foreign currency"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 165}
+
+
+## Disbursements
+
+### Short term
+
+New_dom_nr_tbill_lc:
+  Descriptor: "New gross disbursement_T-bills_in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 168}
+
+New_dom_nr_tbill_fc:
+  Descriptor: "New gross disbursement_T-bills_in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 169}
+
+
+### ML term
+
+New_dom_nr_1_3_lc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_4_7_lc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_7_lc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in local currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_1_3_fc:
+  Descriptor: "New gross disbursement_Bonds (1-3 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_4_7_fc:
+  Descriptor: "New gross disbursement_Bonds (4-7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+New_dom_nr_7_fc:
+  Descriptor: "New gross disbursement_Bonds (beyond 7 years) in foreign currency"
+  Units: "National currency"
+  Scale: "Million"
+  Source: Input
+
+
+# For probability approach only - Please fill out these lines when users want to conduct the probability approach
+
+NGDP_RPCH:
+  Descriptor: "World Economic Growth (real)"
+  Units: ""
+  Scale: "Units"
+  Source: Input
+
+RES:
+  Descriptor: "Stock of Reserves"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Input

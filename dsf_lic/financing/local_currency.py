@@ -12,6 +12,9 @@ class DebtInfo(NamedTuple):
     grace_period: int
     loan_maturity: int
     repayment_schedule: Optional[str] = None
+    prefix: str = ""
+    sub_group: str = ""
+    group: str = ""
     description: Optional[str] = None
 
 
@@ -21,7 +24,6 @@ class DisbursementInfo(NamedTuple):
     interest_rate: float
     grace_period: int
     loan_maturity: int
-
 
 
 def get_debt_info(name: str) -> DebtInfo:
@@ -40,7 +42,10 @@ def create_year_debt_table(debt_info: DisbursementInfo, data: pd.DataFrame) -> p
 
             amortization =
             lambda df: df.index.to_series()
-            .between(debt_info.year + debt_info.grace_period + 1, debt_info.year + debt_info.loan_maturity)
+            .between(
+                debt_info.year + debt_info.grace_period + 1,
+                debt_info.year + debt_info.loan_maturity,
+            )
             .mul(debt_info.value).div(debt_info.loan_maturity - debt_info.grace_period),
 
             amortization_usd = lambda df: df["amortization"] / data["ENDA"],
@@ -104,5 +109,9 @@ def create_debt_table(
             names=["bond_year", "repayment_year"],
         )
         .groupby("repayment_year").sum()
+        .join(data[financing_info.disbursement].rename("disbursement"))
+        .assign(
+            disbursement_usd = lambda df: df["disbursement"] / data["ENDA"],
+        )
     )
     return aggregate_debt_table
