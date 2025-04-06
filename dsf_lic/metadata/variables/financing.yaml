@@ -255,35 +255,35 @@ edd_44:
   Corresponding_Values:
     - {sheet: "Ext_Debt_Data", row: 44}
 
-# edd_50:
-#   Source: Calculation
-#   Formula:
-#     Residency_Based: "(DS_dom_nr_lc.fillna(0) + DS_p_dom_nr_lc.fillna(0)) / ENDA"
-#     Currency_Based: "0"
-#   Corresponding_Values:
-#     - {sheet: "Ext_Debt_Data", row: 50}
+edd_50:
+  Source: Calculation
+  Formula:
+    Residency_Based: "(DS_dom_nr_lc.fillna(0) + DS_p_dom_nr_lc.fillna(0)) / ENDA"
+    Currency_Based: "0"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 50}
 
-# edd_51:
-#   Source: Calculation
-#   Formula:
-#     Residency_Based: "DS_dom_nr_fc.fillna(0) + DS_p_dom_nr_fc.fillna(0)"
-#     Currency_Based: "0"
-#   Corresponding_Values:
-#     - {sheet: "Ext_Debt_Data", row: 51}
+edd_51:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_nr_fc.fillna(0) + DS_p_dom_nr_fc.fillna(0)"
+    Currency_Based: "0"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 51}
 
-# edd_49:
-#   Source: Calculation
-#   Formula: "edd_50 + edd_51"
-#   Corresponding_Values:
-#     - {sheet: "Ext_Debt_Data", row: 49}
+edd_49:
+  Source: Calculation
+  Formula: "edd_50 + edd_51"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 49}
 
-# edd_53:
-#   Source: Calculation
-#   Formula:
-#     Residency_Based: "DS_dom_fc.fillna(0) + DS_p_dom_fc.fillna(0)"
-#     Currency_Based: "0"
-#   Corresponding_Values:
-#     - {sheet: "Ext_Debt_Data", row: 53}
+edd_53:
+  Source: Calculation
+  Formula:
+    Residency_Based: "DS_dom_fc.fillna(0) + DS_p_dom_fc.fillna(0)"
+    Currency_Based: "0"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 53}
 
 
 edd_56:
@@ -322,6 +322,17 @@ edd_61:
   Corresponding_Values:
     - {sheet: "Ext_Debt_Data", row: 61}
 
+edd_62:
+  Source: Calculation
+  Formula: "OLD_TOTAL_P.fillna(0) + edd_56"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 61}
+
+edd_63:
+  Source: Calculation
+  Formula: "edd_61 - edd_62"
+
+
 edd_67:
   Descriptor: "Evolution of old medium- and long-term (MLT) debt, excluding arrears (nominal)"
   Units: "US Dollars"
@@ -334,6 +345,14 @@ edd_67:
   Corresponding_Values:
     - {sheet: "Ext_Debt_Data", row: 67}
 
+edd_359:
+  Source: Calculation
+  Formula: "PPG_X_ST.fillna(0)"
+
+edd_360:
+  Source: Calculation
+  Formula: "PPG_X_ST.shift(1).mul(0.1).fillna(0)"
+
 edd_362:
   Descriptor: "Nominal value (=PV) of ST debt (locally-issued debt)"
   Source: Calculation
@@ -342,6 +361,26 @@ edd_362:
     Currency_Based: "i5_188.shift(-1) / ENDE"
   Corresponding_Values:
     - {sheet: "Ext_Debt_Data", row: 362}
+
+edd_363:
+  Source: Calculation
+  Formula:
+    Residency_Based: "i5_191 + i5_193 / ENDA"
+    Currency_Based: "i5_188 / ENDA"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 363}
+
+edd_364:
+  Source: Calculation
+  Formula:
+    Residency_Based: "New_dom_nr_tbill_fc + New_dom_nr_tbill_lc / ENDA"
+    Currency_Based: "New_dom_tbill_fc"
+  Corresponding_Values:
+    - {sheet: "Ext_Debt_Data", row: 364}
+
+edd_368:
+  Source: Calculation
+  Formula: "edd_360 + edd_364"
 
 
 mdd_9:
@@ -367,12 +406,19 @@ mdd_8:
   Source: Calculation
   Formula: "mdd_9 + mdd_10"
 
+i8_17:
+  Source: Calculation
+  Formula: "0"
+
 mdd_19:
   Descriptor: "Public and publicly guaranteed"
   Units: "US Dollars"
   Scale: "Million"
   Source: Calculation
-  Formula: "X_PPG_INT.fillna(0) + i3_207"
+  # Formula: "X_PPG_INT.fillna(0) + i3_207"
+  Formula:
+    Pre_Projection: "X_PPG_INT.fillna(0) + i3_207"
+    Post_Projection: "edd_63 + NEW_MLT_INT + edd_368 + i8_17"
 
 mdd_18:
   Descriptor: "Total external debt interest due (include interest from new debt)"
@@ -477,24 +523,47 @@ i5_112_prime:
   Source: Calculation
   Formula: "i5_64_prime - i5_79"
 
-# i5_171:
-#   Source: Calculation
-#   Formula: "i5_174 + i5_185"
+i5_112:
+  Source: Calculation
+  Function: calculate_residual_financing
 
-# i5_47:
-#   Source: Calculation
-#   Formula: "i5_171 + i5_49"
+residual_financing_interest:
+  Source: Calculation
+  Function: residual_financing_interest
 
-# i5_214:
-#   Descriptor: Interest payment
-#   Source: Calculation
-#   Formula: "i5_143 + i5_174"
+i5_174:
+  Source: Calculation
+  Formula: "i5_174_prime + residual_financing_interest"
 
-# mdd_21:
-#   Descriptor: "Total public domestic debt interest due"
-#   Units: "US Dollars"
-#   Scale: "Million"
-#   Source: Calculation
-#   Formula:
-#     Pre_Projection: "i3_189 / ENDA"
-#     Post_Projection: "i5_214 / ENDA"
+i5_185:
+  Source: Calculation
+  Formula: "i5_185_prime + i5_112.shift(1, fill_value=0)"
+
+i5_171:
+  Source: Calculation
+  Formula: "i5_174 + i5_185"
+
+i5_47:
+  Source: Calculation
+  Formula: "i5_171 + i5_49"
+
+i5_214:
+  Descriptor: Interest payment
+  Source: Calculation
+  Formula: "i5_143 + i5_174"
+
+mdd_21:
+  Descriptor: "Total public domestic debt interest due"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula:
+    Pre_Projection: "i3_189 / ENDA"
+    Post_Projection: "i5_214 / ENDA"
+
+mdd_49:
+  Descriptor: "Public sector interest expenditure"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "(mdd_19 + mdd_21) * ENDA"

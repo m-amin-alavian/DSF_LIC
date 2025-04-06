@@ -38,3 +38,23 @@ def foreign_currency_debt(
 
 def local_currency_debt(name: str, column: str, data: pd.DataFrame) -> pd.Series:
     return local_currency.create_debt_table(name, data)[column]
+
+
+def calculate_residual_financing(data: pd.DataFrame) -> pd.Series:
+    table = (
+        data[["i5_112_prime"]]
+        .join(metadata.internal_interest_rates["tbills_lc"].div(100).add(1))
+        .loc[metadata.setting.projection_year:]
+    )
+
+    residual_financing = pd.Series({metadata.setting.projection_year-1: 0})
+    value = 0
+    for year, row in table.iterrows():
+        value = value + row["i5_112_prime"]
+        residual_financing[year] = value
+        value = value * row["tbills_lc"]
+    return residual_financing
+
+
+def residual_financing_interest(data: pd.DataFrame) -> pd.Series:
+    return data["i5_112"].mul(metadata.internal_interest_rates["tbills_lc"].div(100)).shift(1).fillna(0)

@@ -67,6 +67,7 @@ def apply_metadata_for_column(
                 data.loc[projection_year:].eval(formula["Post_Projection"], local_dict=local_dict), # type: ignore
             ])
         else:
+            print(column_metadata)
             raise ValueError
     elif column_metadata["Source"] == "Calculation" and "Function" in column_metadata:
         variable_functions = importlib.import_module("dsf_lic.metadata.variable_functions")

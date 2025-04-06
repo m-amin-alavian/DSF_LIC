@@ -88,13 +88,6 @@ pub_prim_bal:
   Corresponding_Values:
     - {sheet: "Macro-Debt_Data", row: 44}
 
-# mdd_49:
-#   Descriptor: "Public sector interest expenditure"
-#   Units: "National Currency"
-#   Scale: "Million"
-#   Source: Calculation
-#   Formula: "(mdd_19+mdd_21)*ENDA"
-
 NGDP_R_growth:
   Source: Calculation
   Formula: "(NGDP_R / NGDP_R.shift() - 1) * 100"
