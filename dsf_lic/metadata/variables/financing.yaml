@@ -402,14 +402,51 @@ i5_42:
   Source: Calculation
   Formula: "i5_140 + edd_61 * ENDA"
 
-# i5_174:
-#   Source: Calculation
+edd_136:
+  Source: Calculation
+  Formula: "NEW_MLT_INT + NEW_MLT_DP"
 
+i5_48_prime:
+  Source: Calculation
+  Formula:
+    Residency_Based: "(New_dom_lc_INT + New_dom_lc_st_INT +
+      New_dom_fc_INT + New_dom_fc_st_INT) * ENDA"
+    Currency_Based: "(New_dom_lc_INT + New_dom_lc_st_INT) * ENDA"
 
-# i5_214:
-#   Descriptor: Interest payment
+i5_49:
+  Source: Calculation
+  Formula: "edd_136 * ENDA"
+
+i5_47_prime:
+  Source:
+  Formula: "i5_48_prime + i5_49"
+
+i5_79:
+  Source: Calculation
+  Formula:
+    Residency_Based: "(New_dom_lc + New_dom_lc_st + New_dom_nr_lc + New_dom_nr_lc_st) * ENDA"
+    Currency_Based: "(New_dom_lc + New_dom_lc_st) * ENDA"
+
+# i5_64:
 #   Source: Calculation
-#   Formula: "i5_143 + i5_174"
+#   Formula: "i5_56 - (i5_58 + i5_60 + i5_61 + i5_62 + i5_63)"
+
+# i5_112:
+#   Source: Calculation
+#   Formula: "i5_64 - i5_79"
+
+# i5_171:
+#   Source: Calculation
+#   Formula: "i5_174 + i5_185"
+
+# i5_47:
+#   Source: Calculation
+#   Formula: "i5_171 + i5_49"
+
+i5_214:
+  Descriptor: Interest payment
+  Source: Calculation
+  Formula: "i5_143 + i5_174"
 
 # mdd_21:
 #   Descriptor: "Total public domestic debt interest due"

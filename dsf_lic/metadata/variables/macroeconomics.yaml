@@ -1,23 +1,99 @@
 Budget_Deficit:
+  Descriptor: "Budget Deficit"
+  Units: "National Currency"
+  Scale: "Million"
   Source: Calculation
   Formula: "GE - GRG"
 
 
 Trade_Deficit:
+  Descriptor: "Trade Deficit"
+  Units: "US Dollars"
+  Scale: "Million"
   Source: Calculation
   Formula: "BM - BX"
 
 NCT:
+  Descriptor: "Current transfers (net)"
+  Units: "US Dollars"
+  Scale: "Million"
   Source: Calculation
   Formula: "-BIT"
 
 NCTG:
+  Descriptor: "Official grants (net)"
+  Units: "US Dollars"
+  Scale: "Million"
   Source: Calculation
   Formula: "-BITG"
 
 NFDI:
+  Descriptor: "Foreign direct investment"
+  Units: "US Dollars"
+  Scale: "Million"
   Source: Calculation
   Formula: "-BFD"
+
+
+# macro_debt_data sheet variables
+
+comf_Share_ex_ex:
+  Descriptor: "Share of commodity exports (fuel) (% of exports of G&S)"
+  Units: "none"
+  Scale: "none"
+  Source: Calculation
+  Formula: "Com_fuel_ex/BX"
+
+comnf_Share_ex_ex:
+  Descriptor: "Share of commodity exports (fuel) (% of exports of G&S)"
+  Units: "none"
+  Scale: "none"
+  Source: Calculation
+  Formula: "Com_nfuel_ex/BX"
+
+comf_Share_im_im:
+  Descriptor: "Share of commodity exports (fuel) (% of exports of G&S)"
+  Units: "none"
+  Scale: "none"
+  Source: Calculation
+  Formula: "Com_fuel_im/BM"
+
+comnf_Share_im_im:
+  Descriptor: "Share of commodity exports (fuel) (% of exports of G&S)"
+  Units: "none"
+  Scale: "none"
+  Source: Calculation
+  Formula: "Com_nfuel_im/BM"
+
+comf_Share_im_ex:
+  Descriptor: "Share of commodity exports (fuel) (% of exports of G&S)"
+  Units: "none"
+  Scale: "none"
+  Source: Calculation
+  Formula: "Com_fuel_im/BX"
+
+comnf_Share_im_ex:
+  Descriptor: "Share of commodity exports (fuel) (% of exports of G&S)"
+  Units: "none"
+  Scale: "none"
+  Source: Calculation
+  Formula: "Com_nfuel_im/BX"
+
+pub_prim_bal:
+  Descriptor: "public sector primary balance"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "GRG-GE"
+  Corresponding_Values:
+    - {sheet: "Macro-Debt_Data", row: 44}
+
+# mdd_49:
+#   Descriptor: "Public sector interest expenditure"
+#   Units: "National Currency"
+#   Scale: "Million"
+#   Source: Calculation
+#   Formula: "(mdd_19+mdd_21)*ENDA"
 
 NGDP_R_growth:
   Source: Calculation
@@ -39,3 +115,13 @@ GDP_Deflator_Index_USD_growth:
   Corresponding_Values:
     - {sheet: "Output 1-1 - External DSA", row: 39}
     - {sheet: "Baseline - external", row: 53}
+
+other_debt_creating_reducing_flow:
+  Descriptor: "Other debt creating or reducing flows (e.g., privatization (-), continget liabilities (+), and debt relief(-))"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "-GCFP.fillna(0)+G_CL.fillna(0)-GCDRNM.fillna(0)+G_DCF.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 54}
+

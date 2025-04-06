@@ -10,7 +10,7 @@ class ExtrapolateOptions(NamedTuple):
 
 def extrapolate(
     column: pd.Series,
-    parameters: dict | bool = True
+    parameters: dict | bool = True,
 ) -> pd.Series:
     if parameters is False:
         return column

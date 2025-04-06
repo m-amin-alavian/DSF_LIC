@@ -12,11 +12,11 @@ def open_data() -> pd.DataFrame:
     metadata.reload_metadata()
     data = load_input()
     data = apply_metadata(data, "inputs")
-    data = apply_metadata(data, "macroeconomics")
     data = steps.add_foreign_currency_financing(data)
     data = steps.add_local_currency_financing(data)
     data = steps.add_mlt_debts(data)
     data = apply_metadata(data, "financing")
+    data = apply_metadata(data, "macroeconomics")
     data = steps.add_per_gdp(data)
     data = data.round(6)
     return data
