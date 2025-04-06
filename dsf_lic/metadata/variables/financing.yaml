@@ -406,19 +406,30 @@ edd_136:
   Source: Calculation
   Formula: "NEW_MLT_INT + NEW_MLT_DP"
 
-i5_48_prime:
+i5_174_prime:
   Source: Calculation
   Formula:
     Residency_Based: "(New_dom_lc_INT + New_dom_lc_st_INT +
       New_dom_fc_INT + New_dom_fc_st_INT) * ENDA"
     Currency_Based: "(New_dom_lc_INT + New_dom_lc_st_INT) * ENDA"
 
+i5_185_prime:
+  Source: Calculation
+  Formula:
+    Residency_Based: "(New_dom_lc_DP + New_dom_lc_st_DP +
+      New_dom_fc_DP + New_dom_fc_st_DP) * ENDA"
+    Currency_Based: "(New_dom_lc_DP + New_dom_lc_st_DP) * ENDA"
+
+i5_48_prime:
+  Source: Calculation
+  Formula: "i5_174_prime + i5_185_prime"
+
 i5_49:
   Source: Calculation
   Formula: "edd_136 * ENDA"
 
 i5_47_prime:
-  Source:
+  Source: Calculation
   Formula: "i5_48_prime + i5_49"
 
 i5_79:
@@ -427,13 +438,44 @@ i5_79:
     Residency_Based: "(New_dom_lc + New_dom_lc_st + New_dom_nr_lc + New_dom_nr_lc_st) * ENDA"
     Currency_Based: "(New_dom_lc + New_dom_lc_st) * ENDA"
 
-# i5_64:
-#   Source: Calculation
-#   Formula: "i5_56 - (i5_58 + i5_60 + i5_61 + i5_62 + i5_63)"
+i5_54:
+  Descriptor: "Other debt creating or reducing flows (e.g., privatization (-), continget liabilities (+), and debt relief(-))"
+  Units: "US Dollars"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "-GCFP.fillna(0)+G_CL.fillna(0)-GCDRNM.fillna(0)+G_DCF.fillna(0)"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 54}
 
-# i5_112:
-#   Source: Calculation
-#   Formula: "i5_64 - i5_79"
+
+
+i5_52:
+  Descriptor: "Debt services from ST external debt"
+  Units: "National Currency"
+  Scale: "Million"
+  Source: Calculation
+  Formula: "PPG_X_ST.shift().fillna(0) * ENDA * (1 + 10 / 100) +
+    New_dom_nr_tbill_lc_DP + New_dom_nr_tbill_lc_INT +
+    (New_dom_nr_tbill_fc_DP + New_dom_nr_tbill_fc_INT) * ENDA"
+  Corresponding_Values:
+    - {sheet: "Input 5 - Local-debt Financing", row: 52}
+
+
+i5_56_prime:
+  Source: Calculation
+  Formula: "(GE - GRG) + i5_42 + i5_47_prime + i5_52 + i5_54"
+
+i5_62:
+  Source: Calculation
+  Formula: "(OLD_IMF + NEW_IMF_DP + NEW_IMF_INT - NEW_IMF) * ENDA"
+
+i5_64_prime:
+  Source: Calculation
+  Formula: "i5_56_prime - ((NEW_EXT + PPG_X_ST.fillna(0)) * ENDA + PBAF.fillna(0) + i5_62 + 0)"
+
+i5_112_prime:
+  Source: Calculation
+  Formula: "i5_64_prime - i5_79"
 
 # i5_171:
 #   Source: Calculation
@@ -443,10 +485,10 @@ i5_79:
 #   Source: Calculation
 #   Formula: "i5_171 + i5_49"
 
-i5_214:
-  Descriptor: Interest payment
-  Source: Calculation
-  Formula: "i5_143 + i5_174"
+# i5_214:
+#   Descriptor: Interest payment
+#   Source: Calculation
+#   Formula: "i5_143 + i5_174"
 
 # mdd_21:
 #   Descriptor: "Total public domestic debt interest due"

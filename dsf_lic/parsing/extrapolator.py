@@ -24,7 +24,7 @@ def extrapolate(
 
     if options.last_year is None:
         last_year = column.loc[lambda s: s.notna()].index[-1]
-    if options.last_year == "projection_year":
+    elif options.last_year == "projection_year":
         last_year = metadata.setting.projection_year
     else:
         last_year = options.last_year
