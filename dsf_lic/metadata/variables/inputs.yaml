@@ -268,48 +268,64 @@ PPG_X_ST:
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 52}
 
 X_PPG_INT:
   Descriptor: "PPG external debt interest due"
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 53}
 
 X_PPG_AMT:
   Descriptor: "PPG TOTAL external debt amortization due"
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 54}
 
 EXT_ARREARS:
   Descriptor: "PPG External arrears"
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 55}
 
 P_X_MLT:
   Descriptor: "Private sector MLT external debt outstanding"
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 57}
 
 P_X_ST:
   Descriptor: "Private sector ST external debt outstanding"
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 58}
 
 X_P_INT:
   Descriptor: "Private external debt interest due"
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 59}
 
 X_P_AMT:
   Descriptor: "Private MLT external debt amortization due"
   Units: "US Dollars"
   Scale: "Million"
   Source: Input
+  Corresponding_Values:
+    - {sheet: "Input 3 - Macro-Debt data(DMX)", row: 60}
 
 
 # III. Old (Existing) Medium and Long-term external debt service due (scheduled) by main creditors (principal and interest):

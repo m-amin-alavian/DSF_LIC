@@ -1,0 +1,204 @@
+ble_13:
+  Source: Calculation
+  Formula: "100 * mdd_81 / (mdd_56 * mdd_60)"
+
+ble_14:
+  Source: Calculation
+  Formula: mdd_70
+
+ble_12:
+  Source: Calculation
+  Formula: "ble_13 + ble_14"
+
+ble_15:
+  Source: Calculation
+  Formula: "ble_14 - ble_14.shift()"
+
+ble_17:
+  Source: Calculation
+  Formula: "- (mdd_18 + mdd_28) / mdd_56 * 100"
+
+ble_24:
+  Source: Calculation
+  Formula: "- mdd_34 / mdd_56 * 100"
+
+ble_26:
+  Source: Calculation
+  Formula: "(1 + ble_52 / 100) * (1 + mdd_111 / 100)"
+
+ble_27:
+  Source: Calculation
+  Formula: "(ble_54 / 100) * ble_12.shift() / ble_26"
+
+ble_28:
+  Source: Calculation
+  Formula: "- (ble_52 / 100) * ble_12.shift() / ble_26"
+
+ble_29:
+  Source: Calculation
+  Formula: "mdd_111 / 100 * (1 + ble_52 / 100)) * ble_12.shift() / ble_26 +
+    ble_43.shift() * (- mdd_114 / 100) * (1 + ble_54 / 100) * ble_12.shift() / ble_26"
+
+ble_25:
+  Source: Calculation
+  Formula: "ble_27 + ble_28 + ble_29"
+
+ble_16:
+  Source: Calculation
+  Formula: "ble_17 + ble_24 + ble_25"
+
+ble_19:
+  Source: Calculation
+  Formula: "mdd_29 / mdd_56 * 100"
+
+ble_20:
+  Source: Calculation
+  Formula: "mdd_30 / mdd_56 * 100"
+
+ble_18:
+  Source: Calculation
+  Formula: "ble_19 + ble_20"
+
+ble_21:
+  Source: Calculation
+  Formuls: "-mdd_31 / mdd_56 * 100"
+
+ble_22:
+  Source: Calculation
+  Formuls: "-mdd_32 / mdd_56 * 100"
+
+ble_23:
+  Source: Calculation
+  Formuls: "ble_17 - ble_18 - ble_21"
+
+ble_30:
+  Source: Calculation
+  Formuls: "ble_15 - ble_16"
+
+ble_31:
+  Source: Calculation
+  Formuls: "- mdd_35 / mdd_56 * 100"
+
+ble_33:
+  Source: Calculation
+  Formula: "edd_371 / mdd_56 * 100"
+
+ble_34:
+  Source: Calculation
+  Formula: "ble_33 / ble_19 * 100"
+
+ble_34:
+  Source: Calculation
+  Formula: "ble_35 + mdd_70"
+
+ble_36:
+  Source: Calculation
+  Formula: "ble_35 / ble_19 * 100"
+
+ble_37:
+  Source: Calculation
+  Formula: "ble_35 / mdd_98 * 100"
+
+ble_38:
+  Source: Calculation
+  Formula: "(mdd_13.shift() + mdd_18 + mdd_23) / mdd_29 * 100"
+
+ble_39:
+  Source: Calculation
+  Formula: "ble_38 - mdd71"
+
+ble_40:
+  Source: Calculation
+  Formula: "ble_39 * mdd_29 / mdd_95"
+
+ble_41:
+  Source: Calculation
+  Formula: "mdd_74"
+
+ble_42:
+  Source: Calculation
+  Formula: "ble_17 - ble_15"
+
+ble_43:
+  Source: Calculation
+  Formula: "mdd_85 / 100"
+
+ble_43:
+  Source: Calculation
+  Formula: "mdd_77 / mdd_56"
+
+ble_46:
+  Source: Calculation
+  Formula: "ble_19 / mdd_56 * 100"
+
+ble_48:
+  Source: Calculation
+  Formula: mdd_56
+
+ble_49:
+  Source: Calculation
+  Formula: (mdd_56 / mdd_56.shift(-1) - 1) * 100
+
+ble_50:
+  Source: Calculation
+  Formula: edd_371
+
+ble_51:
+  Source: Calculation
+  Formula: (edd_371 - edd_371.shift()) / mdd_56.shift()
+
+ble_52:
+  Source: Calculation
+  Formula: (mdd_57 / mdd_57.shift(-1) - 1) * 100
+
+ble_53:
+  Source: Calculation
+  Formula: mdd_111
+
+ble_54:
+  Source: Calculation
+  Formula: mdd_18 / ble_12 * mdd_56
+
+ble_55:
+  Source: Calculation
+  Formula: "(mdd_29 / mdd_29.shift() - 1) * 100"
+
+ble_56:
+  Source: Calculation
+  Formula: "(mdd_30 / mdd_30.shift() - 1) * 100"
+
+ble_57:
+  Source: Calculation
+  Formula: "- ble_21"
+
+ble_58:
+  Source: Calculation
+  Formula: "- ble_24"
+
+ble_59:
+  Source: Calculation
+  Formula: mdd_114
+
+ble_60:
+  Source: Calculation
+  Formula: mdd_98
+
+ble_61:
+  Source: Calculation
+  Formula: mdd_103
+
+ble_62:
+  Source: Calculation
+  Formula: mdd_104
+
+ble_63:
+  Source: Calculation
+  Formula: mdd_105
+
+ble_64:
+  Source: Calculation
+  Formula: "(mdd_104 + edd_118 - edd_387) / mdd_56 * 100"
+
+ble_65:
+  Source: Calculation
+  Formula: "mdd_104 + edd_118"

@@ -415,7 +415,6 @@ mdd_19:
   Units: "US Dollars"
   Scale: "Million"
   Source: Calculation
-  # Formula: "X_PPG_INT.fillna(0) + i3_207"
   Formula:
     Pre_Projection: "X_PPG_INT.fillna(0) + i3_207"
     Post_Projection: "edd_63 + NEW_MLT_INT + edd_368 + i8_17"
@@ -567,3 +566,119 @@ mdd_49:
   Scale: "Million"
   Source: Calculation
   Formula: "(mdd_19 + mdd_21) * ENDA"
+
+
+
+edd_118:
+  Source: Caluclation
+  Formula: 
+
+edd_371:
+  Source: Caluclation
+  Formula: 
+
+edd_387:
+  Source: Caluclation
+  Formula: 
+
+
+mdd_13:
+  Source: Caluclation
+  Formula: P_X_ST
+
+# mdd_18:
+#   Source: Caluclation
+#   Formula: 
+
+mdd_23:
+  Source: Caluclation
+  Formula: 
+
+mdd_28:
+  Source: Caluclation
+  Formula: 
+
+mdd_29:
+  Source: Caluclation
+  Formula: 
+
+mdd_30:
+  Source: Caluclation
+  Formula: 
+
+mdd_31:
+  Source: Caluclation
+  Formula: 
+
+mdd_32:
+  Source: Caluclation
+  Formula: 
+
+mdd_34:
+  Source: Caluclation
+  Formula: 
+
+mdd_35:
+  Source: Caluclation
+  Formula: 
+
+mdd_56:
+  Source: Caluclation
+  Formula: 
+
+mdd_57:
+  Source: Caluclation
+  Formula: 
+
+mdd_60:
+  Source: Caluclation
+  Formula: 
+
+mdd_70:
+  Source: Caluclation
+  Formula: 
+
+mdd_74:
+  Source: Caluclation
+  Formula: 
+
+mdd_77:
+  Source: Caluclation
+  Formula: 
+
+mdd_81:
+  Source: Caluclation
+  Formula: 
+
+mdd_85:
+  Source: Caluclation
+  Formula: 
+
+mdd_95:
+  Source: Caluclation
+  Formula: 
+
+mdd_98:
+  Source: Caluclation
+  Formula: 
+
+mdd_103:
+  Source: Caluclation
+  Formula: 
+
+mdd_104:
+  Source: Caluclation
+  Formula: 
+
+mdd_105:
+  Source: Caluclation
+  Formula: 
+
+mdd_111:
+  Source: Caluclation
+  Formula: 
+
+mdd_114:
+  Source: Caluclation
+  Formula: 
+
