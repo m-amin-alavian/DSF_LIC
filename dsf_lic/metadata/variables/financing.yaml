@@ -570,115 +570,202 @@ mdd_49:
 
 
 edd_118:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: NEW_MLT
+
+
+edd_230:
+  Source: Calculation
+  Formula: OLD_EXT_PV + edd_58
+
+edd_265:
+  Source: Calculation
+  Formula: EXT_ARREARS.fillna(0)
+
+edd_267:
+  Source: Calculation
+  Formula: NEW_MLT_PV.fillna(0)
+
+edd_366:
+  Source: Calculation
+  Formula: "PPG_X_ST.fillna(0) + edd_362"
+
+
+edd_370:
+  Source: Calculation
+  Formula: "0"
+
 
 edd_371:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: edd_230 + edd_265 + edd_267 + edd_366 + edd_370
 
-edd_387:
-  Source: Caluclation
-  Formula: 
+# edd_387:
+#   Source: Calculation
+#   Formula: 
 
 
 mdd_13:
-  Source: Caluclation
-  Formula: P_X_ST
+  Source: Calculation
+  Formula: P_X_ST.fillna(0)
 
-# mdd_18:
-#   Source: Caluclation
-#   Formula: 
+edd_184:
+  Source: Calculation
+  Formula: NEW_MLT_DP
+
+edd_367:
+  Source: Calculation
+  Formula: "edd_359.shift(1) + edd_363"
+
+edd_375:
+  Source: Calculation
+  Formula: "edd_62 + edd_184 + edd_367"
+
+mdd_24:
+  Source: Calculation
+  Formula:
+    Pre_Projection: "X_PPG_AMT.fillna(0) + i3_208"
+    Post_Projection: "edd_375"
+
+mdd_25:
+  Source: Calculation
+  Formula: "X_P_AMT.fillna(0)"
 
 mdd_23:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "mdd_24 + mdd_25"
 
 mdd_28:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "BCA.fillna(0)"
 
 mdd_29:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "BX.fillna(0)"
 
 mdd_30:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "BM.fillna(0)"
 
 mdd_31:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "BIT.fillna(0)"
 
 mdd_32:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "BITG.fillna(0)"
 
 mdd_34:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "BFD.fillna(0)"
 
 mdd_35:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "BE.fillna(0)"
 
 mdd_56:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "NGDPD.fillna(0)"
 
 mdd_57:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "NGDP_R.fillna(0)"
 
 mdd_60:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "ENDA.fillna(0)"
+
+mdd_12:
+  Source: Calculation
+  Formula: P_X_MLT.fillna(0)
+
+mdd_11:
+  Source: Calculation
+  Formula: "mdd_12 + mdd_13"
 
 mdd_70:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "(mdd_11 / mdd_56 * 100)"
+
+mdd_89:
+  Source: Calculation
+  Formula: "mdd_10 + mdd_13"
 
 mdd_74:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "(- mdd_28 - mdd_34 + mdd_23 + mdd_89.shift(1))"
+
+mdd_75:
+  Source: Calculation
+  Formula: "mdd_12 - mdd_12.shift(1) + mdd_13 + mdd_25"
+
+mdd_76:
+  Source: Calculation
+  Formula: "mdd_74 - mdd_75"
 
 mdd_77:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: mdd_76 - mdd_10 - edd_118
+
+mdd_59:
+  Source: Calculation
+  Formula: "ENDE.fillna(0)"
 
 mdd_81:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "mdd_8 * mdd_59"
+
+mdd_6:
+  Source: Calculation
+  Formula: "mdd_8 + mdd_11"
 
 mdd_85:
-  Source: Caluclation
+  Source: Calculation
   Formula: 
+    Residency_Based: "i3_204 / mdd_6 * 100"
+    Currency_Based: "0"
+
+mdd_45:
+  Source: Calculation
+  Formula: "GRG.fillna(0)"
+
+mdd_46:
+  Source: Calculation
+  Formula: "GRGG.fillna(0)"
 
 mdd_95:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "((mdd_45 - mdd_46) / mdd_60)"
 
 mdd_98:
-  Source: Caluclation
-  Formula: 
-
-mdd_103:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "(mdd_95 / mdd_56 * 100)"
 
 mdd_104:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "mdd_46 / mdd_60"
 
 mdd_105:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "mdd_45"
+
+mdd_103:
+  Source: Calculation
+  Formula: "mdd_104 + mdd_105"
+
+mdd_110:
+  Source: Calculation
+  Formula: "((mdd_56 / mdd_57) * 100)"
 
 mdd_111:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "(mdd_110 / mdd_110.shift(1))"
+
+mdd_113:
+  Source: Calculation
+  Formula: "1 / mdd_60"
 
 mdd_114:
-  Source: Caluclation
-  Formula: 
+  Source: Calculation
+  Formula: "(((mdd_113 / mdd_113.shift(1)) -1) * -100)"
 

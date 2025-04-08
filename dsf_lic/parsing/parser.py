@@ -12,6 +12,7 @@ def open_data() -> pd.DataFrame:
     metadata.reload_metadata()
     data = load_input()
     data = apply_metadata(data, "inputs")
+    data = steps.add_old_debt_pv(data)
     data = steps.add_foreign_currency_financing(data)
     data = steps.add_local_currency_financing(data)
     data = steps.add_mlt_debts(data)
